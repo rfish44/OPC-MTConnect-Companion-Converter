@@ -16,7 +16,6 @@ The following set up is specific to Visual Studios.
 5.	In the project properties, ensure the configuration is set to Active (Debug).  
 6.	Open the BoilerNodeManager.cs in the server. Set the “filepath” to the location of the DataFiles being streamed. 
 7.	Press F5 to run the server.
-
 STREAMING DATA TO THE SERVER:
 The url in "xml_mtconnect_continuous.py" can be altered to extract data from other web sources. For simply accessing data from XML files, the data must be imported and sent to the “get_root” function.
 -- Setting up file locations for Memex_3Axis Streaming -- 
@@ -46,4 +45,8 @@ b.	In the same region, change the variable Memex_3 to your variable name from st
 Note that if additional/different components are added to a device, you must find the individual variables through the node hierarchy. Ex: “Memex_3.Axes.X.Value”
 
 ADDING ADDITIONAL COMPONENTS:
-
+To add additional components, the OPC-UA structure, the MTConnect structure, and the input model-compiler file, must be thoroughly understood. In the “xml_parsing_mtconnect_nodeset.py” file, additional component objects must be created using the ElementTree module, with in the deviceObjectType definitions. An additional componentObjectType must then be created for the new component, if it is not already defined.
+Instructions for using ElementTree module can be found at: https://docs.python.org/2/library/xml.etree.elementtree.html
+Example OPC-UA model can be found: \UA-ModelCompiler-master\ModelCompiler\UA Model Design.xsd
+Example MTConnect file structure can be found at: http://simulator.memexoee.com/
+Example input model-compiler file can be found in this repository: MTConnectModel.xml
