@@ -23,7 +23,7 @@
       <opc:Variable SymbolicName="OPCUAVersion" DataType="ua:String" ModellingRule="Optional"></opc:Variable>
     </opc:Children>  
   </opc:ObjectType>
-
+ 
   <opc:Object SymbolicName="MTDevices" TypeDefinition="MTDevicesType">
     <opc:References>
       <opc:Reference IsInverse="true">
