@@ -1,4 +1,4 @@
-﻿OPC-MTConnect-Companion-Converter
+OPC-MTConnect-Companion-Converter
 
 The following repository probes an MTConnect file and produces an OPC-UA/MTConnect Companion format that can be uploaded to a server. Data is then streamed to a folder for use by the OPC-UA server. "Live" data is taken by continuously retrieving data from the MTConnect agent. The server used is the .NET Standard provided by The OPC Foundation. A model compiler, also provided by The OPC Foundation, is used to generate nodes for the server. Follow instructions carefully to properly set up the converter along with data streaming.
 
@@ -16,6 +16,7 @@ The following set up is specific to Visual Studios.
 5.	In the project properties, ensure the configuration is set to Active (Debug).  
 6.	Open the BoilerNodeManager.cs in the server. Set the “filepath” to the location of the DataFiles being streamed. 
 7.	Press F5 to run the server.
+
 STREAMING DATA TO THE SERVER:
 The url in "xml_mtconnect_continuous.py" can be altered to extract data from other web sources. For simply accessing data from XML files, the data must be imported and sent to the “get_root” function.
 -- Setting up file locations for Memex_3Axis Streaming -- 
@@ -42,11 +43,17 @@ The server address space will automatically populate with additional devices (no
 a.	Create a passive node for the new object by editing: “Opc.Ua.MTConnect.Objects.Memex_3Axis”. Remove Memex_3Axis and add your own object. 
 b.	In the same region, change the variable Memex_3 to your variable name from step 1. 
 3.	In the “DoSimulation” function, find the “Manual Streaming via Text File” region. Edit the “Streaming for Memex_3 Device” region to find and stream data. Using this method, text files are located and the string is uploaded to the node. If the node is of a type other than string, the “Convert.To” method must be used. Ex: Convert.ToDouble(). To access the value of a node, the “.Value” method must be used at the end of each node.
-Note that if additional/different components are added to a device, you must find the individual variables through the node hierarchy. Ex: “Memex_3.Axes.X.Value”
+Note: If additional/different components are added to a device, you must find the individual variables through the node hierarchy. Ex: “Memex_3.Axes.X.Value”
 
 ADDING ADDITIONAL COMPONENTS:
 To add additional components, the OPC-UA structure, the MTConnect structure, and the input model-compiler file, must be thoroughly understood. In the “xml_parsing_mtconnect_nodeset.py” file, additional component objects must be created using the ElementTree module, with in the deviceObjectType definitions. An additional componentObjectType must then be created for the new component, if it is not already defined.
-Instructions for using ElementTree module can be found at: https://docs.python.org/2/library/xml.etree.elementtree.html
-Example OPC-UA model can be found: \UA-ModelCompiler-master\ModelCompiler\UA Model Design.xsd
-Example MTConnect file structure can be found at: http://simulator.memexoee.com/
-Example input model-compiler file can be found in this repository: MTConnectModel.xml
+-	Instructions for using ElementTree module can be found at: https://docs.python.org/2/library/xml.etree.elementtree.html
+-	Example OPC-UA model can be found: \UA-ModelCompiler-master\ModelCompiler\UA Model Design.xsd
+-	Example MTConnect file structure can be found at: http://simulator.memexoee.com/
+-	Example input model-compiler file can be found in this repository: MTConnectModel.xml
+
+GUI’s:
+The GUI’s are created using Dash by Plotly. Ensure the correct modules are imported to run the program. 
+-	GUI Server: This GUI accesses a CSV data file, provided by the Data Logger in UA Expert, via the “get_csv_data” function. The CSV file is configured to the current folder. This can be changed by establishing a file path when importing via the “open” method.
+-	GUI_one_data_set: This GUI access one set of data: an x and y text file. In the “get_data” function, set “xfile” and “yfile” to the file and its location.
+-	GUI_main: This GUI combines the previous two GUI’s into one application. As well, it can access more than one data file. By altering the “keywords” list in the “get_data” function, data sets can be added or removed from the GUI. Again, the data files must all be in the same path. Set the “filepath” in the “get_data” function.
