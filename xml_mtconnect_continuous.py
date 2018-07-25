@@ -4,7 +4,8 @@
 """
 Created on Wed Jun 13 08:41:53 2018
 
-@author: Ryan Fisher
+@author: Ryan Fisher 
+@company: National Institute of Standards and Technology
 
 This file streams data to a folder for use by the OPC-UA server. An XML file is taken in, and is parsed for
 information. "Live" data is taken by continuously retrieving data from the MTConnect agent.
