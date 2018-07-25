@@ -3,6 +3,7 @@
 Created on Wed Jun 13 08:41:53 2018
 
 @author: Ryan Fisher
+@company: National Institute of Standards and Technology
 
 This file probes an MTConnect file and produces an OPC-UA/MTConnect Companion format that can be
 uploaded to a server. An XML output is generated, but a model compiler is executed on the

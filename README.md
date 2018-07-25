@@ -58,3 +58,7 @@ The GUI’s are created using Dash by Plotly. Ensure the correct modules are imp
 -	GUI Server: This GUI accesses a CSV data file, provided by the Data Logger in UA Expert, via the “get_csv_data” function. The CSV file is configured to the current folder. This can be changed by establishing a file path when importing via the “open” method.
 -	GUI_one_data_set: This GUI access one set of data: an x and y text file. In the “get_data” function, set “xfile” and “yfile” to the file and its location.
 -	GUI_main: This GUI combines the previous two GUI’s into one application. As well, it can access more than one data file. By altering the “keywords” list in the “get_data” function, data sets can be added or removed from the GUI. Again, the data files must all be in the same path. Set the “filepath” in the “get_data” function.
+
+## Distribution
+The furthering of this repository is highly encouraged. Please fork the repository and generate a new commit to make changes. 
+NO WARRANTY is provided when accepting a distribution of this repository. The author has ZERO LIABILITY for consequential, incidental, direct, or indirect damages arising from the use of this repository.

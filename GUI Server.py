@@ -2,6 +2,7 @@
 Information:
 
 @author: Ryan Fisher
+@company: National Institute of Standards and Technology
 
 The following code was generated mainly through open source code. Below is the link to find tutorials on how
 to manipulate Dash by Plotly. These videos were used to guide the production of this GUI.
