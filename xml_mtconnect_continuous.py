@@ -47,7 +47,14 @@ def convert_time_to_num(timevalue):
     timeremainder = timevalue % 1
     timevalue = timevalue - timeremainder
     timeremainder = timeremainder * 5 / 3
-    timevalue = timevalue + timeremainder - (0.17 * 5 / 3)
+    timevalue = timevalue + timeremainder 
+
+    # This correction is made due to an actual time error in the simulator.
+    # Remove this if your data is running according to the actual time.
+    # Currently, the simulator was 17 seconds ahead. You can input how many seconds
+    # ahead the simulator is as a decimal to properly reset the data.
+    timevalue = timevalue - (0.17 * 5 / 3)
+
     return timevalue
 
 def website_to_XML(website):
