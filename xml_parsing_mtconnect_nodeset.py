@@ -9,6 +9,9 @@ This file probes an MTConnect file and produces an OPC-UA/MTConnect Companion fo
 uploaded to a server. An XML output is generated, but a model compiler is executed on the
 XML file to create .uanodes. These nodes are automatically sent to the structure library for
 the server.
+
+Information on xml.etree.ElementTree module can be found at: https://docs.python.org/2/library/xml.etree.elementtree.html
+
 """
 
 import os
@@ -492,8 +495,10 @@ CuttingToolTypeCount = 0
 EDMToolCount = 0
 CNCToolCount= 0
 axes_label = 1001
+### Searches devices and creates XML models for each in companion specification format 
 for device in all_devices: # Creates node sets for each device
-    # Checks for Cutting tools
+    ### Checks for Cutting tools
+    # Creates CuttingTool Object for each Device
     if ("Memex_3Axis" in device or "Mazak" in device ):
         ### Creates first Object   :    Lines 56-67 in MTConnectModel.xml
         # This is standard for every MTConnect file
@@ -593,6 +598,7 @@ for device in all_devices: # Creates node sets for each device
             pass
         '''
         axes_label = axes_label + 1000
+    # Defines a CuttingToolType
     if ("Memex_3Axis" in device or "Mazak" in device) and CuttingToolTypeCount < 1:
         ### Creates ObjectType
         deviceType = "CuttingTool"
@@ -809,7 +815,8 @@ for device in all_devices: # Creates node sets for each device
 
         CuttingToolTypeCount +=1
 
-    # Checks for EDM Tools
+    ### Checks for EDM Tools
+    # Creates EDMTool Object for each Device
     if ("GFAgie" in device):
         ### Creates first Object   :    Lines 56-67 in MTConnectModel.xml
         # This is standard for every MTConnect file
@@ -906,6 +913,7 @@ for device in all_devices: # Creates node sets for each device
             pass
         '''
         axes_label = axes_label + 1000
+    # Defines an EDMToolType
     if ("GFAgie" in device) and EDMToolCount < 1:
         deviceType = "EDMTool"
         ObjectType = Element(namespace2 + "ObjectType")
@@ -1081,7 +1089,8 @@ for device in all_devices: # Creates node sets for each device
         root_out.append(ObjectType)
         EDMToolCount += 1
 
-    # Checks for CNC Tools
+    ### Checks for CNC Tools
+    # Creates CNCTool Object for each Device
     if ("Hurco" in device):
         ### Creates first Object   :    Lines 56-67 in MTConnectModel.xml
         # This is standard for every MTConnect file
@@ -1178,6 +1187,7 @@ for device in all_devices: # Creates node sets for each device
             pass
         '''
         axes_label = axes_label + 1000
+    # Defines a CNCToolType
     if ("Hurco" in device) and CNCToolCount < 1:
         deviceType = "CNCTool"
         ObjectType = Element(namespace2 + "ObjectType")
@@ -1354,6 +1364,7 @@ for device in all_devices: # Creates node sets for each device
         ObjectType.append(Children)
         root_out.append(ObjectType)
         CNCToolCount += 1
+
 
 #### Set Location of the MTConnectModel ---------------------------------------------------------
 ''' Currently it is the same folder as the nodeset generator. If it is not, specify the path. '''
