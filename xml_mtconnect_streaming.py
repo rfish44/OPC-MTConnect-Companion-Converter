@@ -10,6 +10,8 @@ Created on Wed Jun 13 08:41:53 2018
 This file streams data to a folder for use by the OPC-UA server. An XML file is taken in, and is parsed for
 information. "Live" data is taken by continuously retrieving data from the MTConnect agent.
 
+Information on xml.etree.ElementTree module can be found at: https://docs.python.org/2/library/xml.etree.elementtree.html
+
 """
 
 
