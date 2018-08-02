@@ -19,11 +19,11 @@ The following set up is specific to Visual Studios.
 7.	Press F5 to run the server.
 
 ## STREAMING DATA TO THE SERVER:
-The url in "xml_mtconnect_continuous.py" can be altered to extract data from other web sources. For simply accessing data from XML files, the data must be imported and sent to the “get_root” function.
+The url in "xml_mtconnect_streaming.py" can be altered to extract data from other web sources. For simply accessing data from XML files, the data must be imported and sent to the “get_root” function.
 -- Setting up file locations for Memex_3Axis Streaming -- 
-1.	Open "xml_mtconnect_continuous.py". Locate the "write_ouptut_file" function, and change the file path to the location of where the stream files are to be outputted. (Should be the DataFiles folder)
+1.	Open "xml_mtconnect_streaming.py". Locate the "write_ouptut_file" function, and change the file path to the location of where the stream files are to be outputted. (Should be the DataFiles folder)
 2.	Ensure that the modules are installed/updated so they properly import. Methods such a pip install can be used.
-3.	Run the python "xml_mtconnect_continuous.py". The data will now stream, and the server will find the data.
+3.	Run the python "xml_mtconnect_streaming.py". The data will now stream, and the server will find the data.
 4.	Return back to the NodeManager, and press F5 to run the server.
 5.	Use UAExpert as a client to connect to the server. 
 
