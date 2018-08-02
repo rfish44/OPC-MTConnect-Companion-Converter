@@ -62,3 +62,7 @@ The GUI’s are created using Dash by Plotly. Ensure the correct modules are imp
 ## Distribution
 The furthering of this repository is highly encouraged. Please fork the repository and generate a new commit to make changes. 
 NO WARRANTY is provided when accepting a distribution of this repository. The author has ZERO LIABILITY for consequential, incidental, direct, or indirect damages arising from the use of this repository.
+
+## Disclaimer:
+  No approval or endorsement of any commercial product by NIST is intended. Commercial equipment, instruments or materials are identified in this presentation to facilitate better understanding.  Such identification does not imply endorsement by NIST nor does it imply the materials or equipment identified are necessarily the best available for the purpose.
+
