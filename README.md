@@ -3,7 +3,7 @@
 ## Overview
 The following repository probes an MTConnect file and produces an OPC-UA/MTConnect Companion format that can be uploaded to a server. Data is then streamed to a folder for use by the OPC-UA server. "Live" data is taken by continuously retrieving data from the MTConnect agent. The server used is the .NET Standard provided by The OPC Foundation. A model compiler, also provided by The OPC Foundation, is used to generate nodes for the server. Follow instructions carefully to properly set up the converter along with data streaming.
 
-There are currently two implementations:
+### There are currently two implementations:
 1.	Auto node generation
 2.	Manual node generation
 
