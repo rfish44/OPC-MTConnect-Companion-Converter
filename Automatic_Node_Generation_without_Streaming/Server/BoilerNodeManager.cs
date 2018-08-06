@@ -335,14 +335,13 @@ namespace Quickstarts.Boiler.Server
             /// --- Note that this is device specific ---
             /// Set the file path of where the data located. Include the 
             /// Ex: C:\Users\DataFiles
-            string filepath = @"C:\Users\rdf1\Documents\codes\Python_Files\DataFiles";
+            string filepath = @"Enter File Path Here";
             string[] readText;
             double value;
             int lengthArray;
             
             #region /// Manual Streaming via Text File ///
 
-            
             #region /// Streaming for Memex_3 Device ///
             /*
             /// This streams values to the X tag
@@ -437,71 +436,6 @@ namespace Quickstarts.Boiler.Server
             */
             #endregion
             
-            #region /// Streaming for Mazak01 Device ///
-            /*
-            /// This streams values to the X tag
-            try
-            {
-                readText = File.ReadAllLines(@"C:\Users\rdf1\Documents\codes\Python_Files\DataFiles\Data_Mazak01_Xabs_ACTUAL_position.txt");
-                value = Mazak01.Axes.X.Value;
-                lengthArray = readText.Length;
-                value = Convert.ToDouble(readText[lengthArray - 1]);
-            }
-            catch { value = Mazak01.Axes.X.Value; }
-            Mazak01.Axes.X.Value = value;
-            Mazak01.ClearChangeMasks(SystemContext, true);
-
-            /// This streams values to the Y tag
-            try
-            {
-                readText = File.ReadAllLines(@"C:\Users\rdf1\Documents\codes\Python_Files\DataFiles\Data_Mazak01_Yabs_ACTUAL_position.txt");
-                value = Mazak01.Axes.Y.Value;
-                lengthArray = readText.Length;
-
-                value = Convert.ToDouble(readText[lengthArray - 1]);
-            }
-            catch { value = Mazak01.Axes.Y.Value; }
-            Mazak01.Axes.Y.Value = value;
-            Mazak01.ClearChangeMasks(SystemContext, true);
-
-            /// This streams values to the X tag
-            try
-            {
-                readText = File.ReadAllLines(@"C:\Users\rdf1\Documents\codes\Python_Files\DataFiles\Data_Mazak01_Zabs_ACTUAL_position.txt");
-                value = Mazak01.Axes.Z.Value;
-                lengthArray = readText.Length;
-
-                value = Convert.ToDouble(readText[lengthArray - 1]);
-            }
-            catch { value = Mazak01.Axes.Z.Value; }
-            Mazak01.Axes.Z.Value = value;
-            Mazak01.ClearChangeMasks(SystemContext, true);
-            */
-            #endregion
-
-
-            #endregion
-
-            #region /// Streaming via XML (not working currently)
-            /// <summary
-            /// This area of code does not currently work
-            /// </summary>
-            /*
-            XNamespace aw = "{urn:mtconnect.org:MTConnectStreams:1.3}";
-            XElement xmlTree = XElement.Load("http://simulator.memexoee.com/current", LoadOptions.PreserveWhitespace );
-            try {
-                
-                IEnumerable<XElement> de = from el in xmlTree.Descendants("Samples") select el;
-                foreach (XElement el in de)
-                    Console.WriteLine(el.Name);
-                System.Diagnostics.Debug.WriteLine("MADE IT!\n");
-            }
-            catch (Exception e) { Utils.Trace(e, "Unexpected error during simulation."); System.Diagnostics.Debug.WriteLine("Error: ", e); }
-                 
-            //XElement xmlTree = XElement.Parse(booksFromFile);
-            //System.Diagnostics.Debug.WriteLine(booksFromFile);
-            //System.Diagnostics.Debug.WriteLine("xmltree", xmlTree);
-            */
             #endregion
         }
         #endregion

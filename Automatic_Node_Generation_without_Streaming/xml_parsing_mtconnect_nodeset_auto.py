@@ -31,10 +31,10 @@ def move_files():
     # Copies the files, created from the converter, to the server folder.
     # Overwrites files already there to update nodes
     # Set the file source and destination:
-    # The source should be "...\UA-ModelCompiler-master\Published\MTConnect"
-    # The destination should be "...\UA-.NETStandard-master\SampleApplications\Workshop\Boiler\Server"
-    root_src_dir = r"C:\Users\rdf1\Documents\UA-ModelCompiler-master - Copy\Published\MTConnect"  # Source
-    root_dst_dir = r"C:\Users\rdf1\Documents\UA-.NETStandard-master - Copy\SampleApplications\Workshop\Boiler\Server"  # Destination
+    # The source should be: root_src_dir = r"...\UA-ModelCompiler-master\Published\MTConnect"
+    # The destination should be: root_dst_dir = r"...\UA-.NETStandard-master\SampleApplications\Workshop\Boiler\Server"
+    root_src_dir = os.getcwd()  # Source
+    root_dst_dir = os.getcwd()  # Destination
     try:
         for src_dir, dirs, files in os.walk(root_src_dir):
             dst_dir = src_dir.replace(root_src_dir, root_dst_dir, 1)
@@ -53,7 +53,7 @@ def move_files():
 def execute_batch():
     # The batch file to converts the XML to .uanodes
     # Set the file path to ".../UA-ModelCompiler-master/"
-    filepath = r"C:/Users/rdf1/Documents/UA-ModelCompiler-master - Copy/"
+    filepath = "set file path here"
     p = subprocess.Popen("BuildStandardTypes.bat", cwd=filepath)
     stdout, stderr = p.communicate()
     print("Batch file executed...")
@@ -1274,7 +1274,7 @@ for i in root_in.iter("{http://opcfoundation.org/UA/ModelDesign.xsd}ObjectType")
 
 #### Output File ---------------------------------------------------------
 # Set the file path to ".../UA-ModelCompiler-master/ModelCompiler/Design/"
-filepath = "C:/Users/rdf1/Documents/UA-ModelCompiler-master - Copy/ModelCompiler/Design/"
+filepath = os.getcwd()
 filename = "MTConnectDeviceCompanion_NodeSet.xml"
 output_file = filepath + filename
 save_file_xml(root_out, output_file)
@@ -1282,12 +1282,6 @@ save_file_xml(root_out, output_file)
 filename = "MTConnectModel.xml"
 output_file = filepath + filename
 save_file_xml(root_out, output_file)
-
-filepath = "C:/Users/rdf1/Documents/codes/"
-filename = "MTConnectDeviceCompanion_NodeSet.xml"
-output_file = filepath + filename
-save_file_xml(root_out, output_file)
-
 
 ### Executes Batch File
 execute_batch()

@@ -412,7 +412,7 @@ namespace Quickstarts.Boiler.Server
             /// This streams values to the X tag
             try
             {
-                readText = File.ReadAllLines(@"C:\Users\rdf1\Documents\codes\Python_Files\DataFiles\Data_Mazak01_Xabs_ACTUAL_position.txt");
+                readText = File.ReadAllLines(filepath +"\Data_Mazak01_Xabs_ACTUAL_position.txt");
                 value = Mazak01.Axes.X.Value;
                 lengthArray = readText.Length;
                 value = Convert.ToDouble(readText[lengthArray - 1]);
@@ -424,7 +424,7 @@ namespace Quickstarts.Boiler.Server
             /// This streams values to the Y tag
             try
             {
-                readText = File.ReadAllLines(@"C:\Users\rdf1\Documents\codes\Python_Files\DataFiles\Data_Mazak01_Yabs_ACTUAL_position.txt");
+                readText = File.ReadAllLines(filepath +"Data_Mazak01_Yabs_ACTUAL_position.txt");
                 value = Mazak01.Axes.Y.Value;
                 lengthArray = readText.Length;
 
@@ -437,7 +437,7 @@ namespace Quickstarts.Boiler.Server
             /// This streams values to the X tag
             try
             {
-                readText = File.ReadAllLines(@"C:\Users\rdf1\Documents\codes\Python_Files\DataFiles\Data_Mazak01_Zabs_ACTUAL_position.txt");
+                readText = File.ReadAllLines(filepath +"Data_Mazak01_Zabs_ACTUAL_position.txt");
                 value = Mazak01.Axes.Z.Value;
                 lengthArray = readText.Length;
 
