@@ -1,0 +1,2680 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+ * Copyright (c) 2005-2018 The OPC Foundation, Inc. All rights reserved.
+ *
+ * OPC Foundation MIT License 1.00
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * The complete license agreement can be found here:
+ * http://opcfoundation.org/License/MIT/1.00/
+-->
+
+<opc:ModelDesign TargetNamespace="http://opcfoundation.org/UA/MTConnect/" TargetPublicationDate="2013-12-31T00:00:00Z" TargetVersion="1.00" TargetXmlNamespace="http://opcfoundation.org/UA/MTConnect/Types.xsd" xmlns="http://opcfoundation.org/UA/MTConnect/" xmlns:ns0="http://opcfoundation.org/UA/ModelDesign.xsd" xmlns:opc="http://opcfoundation.org/UA/ModelDesign.xsd" xmlns:ua="http://opcfoundation.org/UA/" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <opc:Namespaces>
+    <opc:Namespace Name="OpcUaMTConnect" Prefix="Opc.Ua.MTConnect" XmlNamespace="http://opcfoundation.org/UA/MTConnect/Types.xsd" XmlPrefix="DI">http://opcfoundation.org/UA/MTConnect/</opc:Namespace>
+    <opc:Namespace InternalPrefix="Opc.Ua.Server" Name="OpcUa" Prefix="Opc.Ua" PublicationDate="2013-12-02T00:00:00Z" Version="1.03" XmlNamespac="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</opc:Namespace>
+  </opc:Namespaces>
+  <opc:Object EventNotifier="SubscribeToEvents" SymbolicName="GFAgie01" TypeDefinition="GFAgie01Type">
+    <opc:References>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:Organizes</opc:ReferenceType>
+        <opc:TargetId>ua:ObjectsFolder</opc:TargetId>
+      </opc:Reference>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+        <opc:TargetId>ua:Server</opc:TargetId>
+      </opc:Reference>
+    </opc:References>
+  </opc:Object>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="GFAgie01Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Description_Agie_Mikron_HPM600U___GF_Agie_Charmilles_HPM600U"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="avail"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="estop"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="system"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_CHANGED"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_REMOVED"/>
+      <opc:Object SymbolicName="AxesGFAgie01_axes_1" TypeDefinition="AxesGFAgie01_axes_1Type"/>
+      <opc:Object SymbolicName="ControllerGFAgie01_controller_basic_1" TypeDefinition="ControllerGFAgie01_controller_basic_1Type"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="AxesGFAgie01_axes_1Type">
+    <opc:Children>
+      <opc:Object SymbolicName="LinearGFAgie01_X_1" TypeDefinition="LinearGFAgie01_X_1Type"/>
+      <opc:Object SymbolicName="LinearGFAgie01_Y_1" TypeDefinition="LinearGFAgie01_Y_1Type"/>
+      <opc:Object SymbolicName="LinearGFAgie01_Z_1" TypeDefinition="LinearGFAgie01_Z_1Type"/>
+      <opc:Object SymbolicName="RotaryGFAgie01_C_1" TypeDefinition="RotaryGFAgie01_C_1Type"/>
+      <opc:Object SymbolicName="RotaryGFAgie01_A_1" TypeDefinition="RotaryGFAgie01_A_1Type"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="LinearGFAgie01_X_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Xposition"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="LinearGFAgie01_Y_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Yposition"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="LinearGFAgie01_Z_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Zposition"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryGFAgie01_C_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Cposition"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryGFAgie01_A_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Aposition"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ControllerGFAgie01_controller_basic_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Fovr"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Sovr"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="servo"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="comms"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="pneumatic"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="hydraulic"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="logic"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="motion"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="cnc_temp"/>
+      <opc:Object SymbolicName="PathGFAgie01_path_basic_1" TypeDefinition="PathGFAgie01_path_basic_1Type"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PathGFAgie01_path_basic_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="execution"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="mode"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="program"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="line"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="move"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="path_pos"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="Mazak01Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Description_Mazak_Integrex_100_IV"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="avail"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_CHANGED"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_REMOVED"/>
+      <opc:Object SymbolicName="AxesMazak01_base" TypeDefinition="AxesMazak01_baseType"/>
+      <opc:Object SymbolicName="ControllerMazak01_controller" TypeDefinition="ControllerMazak01_controllerType"/>
+      <opc:Object SymbolicName="SystemsMazak01_systems" TypeDefinition="SystemsMazak01_systemsType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="AxesMazak01_baseType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="servo_cond"/>
+      <opc:Object SymbolicName="LinearMazak01_X" TypeDefinition="LinearMazak01_XType"/>
+      <opc:Object SymbolicName="LinearMazak01_Y" TypeDefinition="LinearMazak01_YType"/>
+      <opc:Object SymbolicName="LinearMazak01_Z" TypeDefinition="LinearMazak01_ZType"/>
+      <opc:Object SymbolicName="RotaryMazak01_B" TypeDefinition="RotaryMazak01_BType"/>
+      <opc:Object SymbolicName="RotaryMazak01_C" TypeDefinition="RotaryMazak01_CType"/>
+      <opc:Object SymbolicName="RotaryMazak01_C2" TypeDefinition="RotaryMazak01_C2Type"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="LinearMazak01_XType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Xabs"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Xtravel"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Xload"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Xfrt"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="LinearMazak01_YType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Yabs"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Ytravel"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Yload"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Yfrt"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="LinearMazak01_ZType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Zabs"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Ztravel"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Zload"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Zfrt"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryMazak01_BType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Bload"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Bfrt"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Btravel"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Bdeg"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryMazak01_CType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Cload"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Sload"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Ctravel"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Cfrt"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Srpm"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Sovr"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Stemp"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Cdeg"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Sload_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Stemp_cond"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryMazak01_C2Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="S2load"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="S2rpm"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="S2temp"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="S2load_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="S2temp_cond"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ControllerMazak01_controllerType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="comms_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="logic_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="system_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="estop"/>
+      <opc:Object SymbolicName="PathMazak01_path" TypeDefinition="PathMazak01_pathType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PathMazak01_pathType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="program"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="subprogram"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="line"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="unitNum"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="sequenceNum"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="PartCountAct"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Fact"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Frapidovr"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Fovr"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Tool_number"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Tool_group"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Tool_suffix"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="execution"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="mode"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="program_cmt"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="subprogram_cmt"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="auto_time"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="total_time"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="cut_time"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="motion_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="path_system"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="SystemsMazak01_systemsType">
+    <opc:Children>
+      <opc:Object SymbolicName="ElectricMazak01_electric" TypeDefinition="ElectricMazak01_electricType"/>
+      <opc:Object SymbolicName="HydraulicMazak01_hydraulic" TypeDefinition="HydraulicMazak01_hydraulicType"/>
+      <opc:Object SymbolicName="CoolantMazak01_coolant" TypeDefinition="CoolantMazak01_coolantType"/>
+      <opc:Object SymbolicName="PneumaticMazak01_pneumatic" TypeDefinition="PneumaticMazak01_pneumaticType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ElectricMazak01_electricType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="power"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="electric_temp"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="HydraulicMazak01_hydraulicType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="hydra_cond"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="CoolantMazak01_coolantType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="coolant_pres"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="coolant_temp"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="coolant_level"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PneumaticMazak01_pneumaticType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="pneu_cond"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="Mazak03Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Description_Mazak_QuickTurn___Mazak_QuickTurn_Nexus_300"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="avail"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_CHANGED"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_REMOVED"/>
+      <opc:Object SymbolicName="AxesMazak03_base_1" TypeDefinition="AxesMazak03_base_1Type"/>
+      <opc:Object SymbolicName="ControllerMazak03_controller_1" TypeDefinition="ControllerMazak03_controller_1Type"/>
+      <opc:Object SymbolicName="SystemsMazak03_systems_1" TypeDefinition="SystemsMazak03_systems_1Type"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="AxesMazak03_base_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="servo_cond"/>
+      <opc:Object SymbolicName="LinearMazak03_X_1" TypeDefinition="LinearMazak03_X_1Type"/>
+      <opc:Object SymbolicName="LinearMazak03_Z_1" TypeDefinition="LinearMazak03_Z_1Type"/>
+      <opc:Object SymbolicName="RotaryMazak03_C_1" TypeDefinition="RotaryMazak03_C_1Type"/>
+      <opc:Object SymbolicName="RotaryMazak03_S_1" TypeDefinition="RotaryMazak03_S_1Type"/>
+      <opc:Object SymbolicName="RotaryMazak03_S2_1" TypeDefinition="RotaryMazak03_S2_1Type"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="LinearMazak03_X_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Xabs"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Xtravel"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Xload"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Xfrt"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="LinearMazak03_Z_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Zabs"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Ztravel"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Zload"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Zfrt"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryMazak03_C_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Cload"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Cfrt"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Cdeg"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Ctravel"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryMazak03_S_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Srpm"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="S1load"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Stemp"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Sload_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Stemp_cond"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryMazak03_S2_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="S2rpm"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="S2load"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="S2temp"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="S2load_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="S2temp_cond"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ControllerMazak03_controller_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="comms_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="logic_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="system_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="pallet_num"/>
+      <opc:Object SymbolicName="PathMazak03_path_1" TypeDefinition="PathMazak03_path_1Type"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PathMazak03_path_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Sovr"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="program"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="subprogram"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="line"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="unitNum"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="sequenceNum"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="PartCountAct"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Fact"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Frapidovr"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Fovr"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="execution"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="mode"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="program_cmt"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="subprogram_cmt"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="auto_time"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="total_time"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="cut_time"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="motion_cond"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="motion_cond2"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="motion_cond3"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="motion_cond4"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="path_system"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="path_system2"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="path_system3"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="path_system4"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Tool_number"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Tool_group"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Tool_suffix"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="SystemsMazak03_systems_1Type">
+    <opc:Children>
+      <opc:Object SymbolicName="ElectricMazak03_electric_1" TypeDefinition="ElectricMazak03_electric_1Type"/>
+      <opc:Object SymbolicName="HydraulicMazak03_hydraulic_1" TypeDefinition="HydraulicMazak03_hydraulic_1Type"/>
+      <opc:Object SymbolicName="CoolantMazak03_coolant_1" TypeDefinition="CoolantMazak03_coolant_1Type"/>
+      <opc:Object SymbolicName="PneumaticMazak03_pneumatic_1" TypeDefinition="PneumaticMazak03_pneumatic_1Type"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ElectricMazak03_electric_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="power"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="electric_temp"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="HydraulicMazak03_hydraulic_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="hydra_cond"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="CoolantMazak03_coolant_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="coolant_pres"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="coolant_temp"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="coolant_level"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PneumaticMazak03_pneumatic_1Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="pneu_cond"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="Hurco01Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Description_Hurco_VMX_24_num1"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="avail"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_CHANGED"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_REMOVED"/>
+      <opc:Object SymbolicName="AxesHurco01_axes" TypeDefinition="AxesHurco01_axesType"/>
+      <opc:Object SymbolicName="ControllerHurco01_controller" TypeDefinition="ControllerHurco01_controllerType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="AxesHurco01_axesType">
+    <opc:Children>
+      <opc:Object SymbolicName="RotaryHurco01_C" TypeDefinition="RotaryHurco01_CType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryHurco01_CType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Speed"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Spindle_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ControllerHurco01_controllerType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="EStop_State"/>
+      <opc:Object SymbolicName="PathHurco01_path" TypeDefinition="PathHurco01_pathType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PathHurco01_pathType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Block_Number"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Running"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Editing"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Part_Count"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Status"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Current_Tool"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Program_Runtime_Seconds"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Time"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Rate"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Override"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Rapid_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="Hurco02Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Description_Hurco_VMX_24_num2"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="avail"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_CHANGED"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_REMOVED"/>
+      <opc:Object SymbolicName="AxesHurco02_axes" TypeDefinition="AxesHurco02_axesType"/>
+      <opc:Object SymbolicName="ControllerHurco02_controller" TypeDefinition="ControllerHurco02_controllerType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="AxesHurco02_axesType">
+    <opc:Children>
+      <opc:Object SymbolicName="RotaryHurco02_C" TypeDefinition="RotaryHurco02_CType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryHurco02_CType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Speed"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Spindle_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ControllerHurco02_controllerType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="EStop_State"/>
+      <opc:Object SymbolicName="PathHurco02_path" TypeDefinition="PathHurco02_pathType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PathHurco02_pathType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Block_Number"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Running"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Editing"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Part_Count"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Status"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Current_Tool"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Program_Runtime_Seconds"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Time"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Rate"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Override"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Rapid_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="Hurco03Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Description_Hurco_VMX_24_num3"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="avail"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_CHANGED"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_REMOVED"/>
+      <opc:Object SymbolicName="AxesHurco03_axes" TypeDefinition="AxesHurco03_axesType"/>
+      <opc:Object SymbolicName="ControllerHurco03_controller" TypeDefinition="ControllerHurco03_controllerType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="AxesHurco03_axesType">
+    <opc:Children>
+      <opc:Object SymbolicName="RotaryHurco03_C" TypeDefinition="RotaryHurco03_CType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryHurco03_CType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Speed"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Spindle_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ControllerHurco03_controllerType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="EStop_State"/>
+      <opc:Object SymbolicName="PathHurco03_path" TypeDefinition="PathHurco03_pathType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PathHurco03_pathType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Block_Number"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Running"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Editing"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Part_Count"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Status"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Current_Tool"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Program_Runtime_Seconds"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Time"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Rate"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Override"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Rapid_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="Hurco04Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Description_Hurco_VMX_24_num4"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="avail"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_CHANGED"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_REMOVED"/>
+      <opc:Object SymbolicName="AxesHurco04_axes" TypeDefinition="AxesHurco04_axesType"/>
+      <opc:Object SymbolicName="ControllerHurco04_controller" TypeDefinition="ControllerHurco04_controllerType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="AxesHurco04_axesType">
+    <opc:Children>
+      <opc:Object SymbolicName="RotaryHurco04_C" TypeDefinition="RotaryHurco04_CType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryHurco04_CType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Speed"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Spindle_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ControllerHurco04_controllerType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="EStop_State"/>
+      <opc:Object SymbolicName="PathHurco04_path" TypeDefinition="PathHurco04_pathType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PathHurco04_pathType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Block_Number"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Running"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Editing"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Part_Count"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Status"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Current_Tool"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Program_Runtime_Seconds"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Time"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Rate"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Override"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Rapid_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="Hurco05Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Description_Hurco_VMX_42"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="avail"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_CHANGED"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_REMOVED"/>
+      <opc:Object SymbolicName="AxesHurco05_axes" TypeDefinition="AxesHurco05_axesType"/>
+      <opc:Object SymbolicName="ControllerHurco05_controller" TypeDefinition="ControllerHurco05_controllerType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="AxesHurco05_axesType">
+    <opc:Children>
+      <opc:Object SymbolicName="RotaryHurco05_C" TypeDefinition="RotaryHurco05_CType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryHurco05_CType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Speed"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Spindle_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ControllerHurco05_controllerType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="EStop_State"/>
+      <opc:Object SymbolicName="PathHurco05_path" TypeDefinition="PathHurco05_pathType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PathHurco05_pathType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Block_Number"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Running"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Editing"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Part_Count"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Status"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Current_Tool"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Program_Runtime_Seconds"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Time"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Rate"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Override"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Rapid_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="Hurco06Type">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Description_Hurco_VMX_64"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="avail"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_CHANGED"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="ASSET_REMOVED"/>
+      <opc:Object SymbolicName="AxesHurco06_axes" TypeDefinition="AxesHurco06_axesType"/>
+      <opc:Object SymbolicName="ControllerHurco06_controller" TypeDefinition="ControllerHurco06_controllerType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="AxesHurco06_axesType">
+    <opc:Children>
+      <opc:Object SymbolicName="RotaryHurco06_C" TypeDefinition="RotaryHurco06_CType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="RotaryHurco06_CType">
+    <opc:Children>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Speed"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Spindle_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="ControllerHurco06_controllerType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="EStop_State"/>
+      <opc:Object SymbolicName="PathHurco06_path" TypeDefinition="PathHurco06_pathType"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:ObjectType BaseType="ua:BaseObjectType" SymbolicName="PathHurco06_pathType">
+    <opc:Children>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Block_Number"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Running"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Name_Editing"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Part_Count"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Program_Status"/>
+      <opc:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Current_Tool"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Program_Runtime_Seconds"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Spindle_Time"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Rate"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Feed_Override"/>
+      <opc:Variable DataType="ua:Double" ModellingRule="Mandatory" SymbolicName="Rapid_Override"/>
+    </opc:Children>
+  </opc:ObjectType>
+  <opc:Object EventNotifier="SubscribeToEvents" SymbolicName="Mazak01" TypeDefinition="Mazak01Type">
+    <opc:References>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:Organizes</opc:ReferenceType>
+        <opc:TargetId>ua:ObjectsFolder</opc:TargetId>
+      </opc:Reference>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+        <opc:TargetId>ua:Server</opc:TargetId>
+      </opc:Reference>
+    </opc:References>
+  </opc:Object>
+  <opc:Object EventNotifier="SubscribeToEvents" SymbolicName="Mazak03" TypeDefinition="Mazak03Type">
+    <opc:References>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:Organizes</opc:ReferenceType>
+        <opc:TargetId>ua:ObjectsFolder</opc:TargetId>
+      </opc:Reference>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+        <opc:TargetId>ua:Server</opc:TargetId>
+      </opc:Reference>
+    </opc:References>
+  </opc:Object>
+  <opc:Object EventNotifier="SubscribeToEvents" SymbolicName="Hurco01" TypeDefinition="Hurco01Type">
+    <opc:References>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:Organizes</opc:ReferenceType>
+        <opc:TargetId>ua:ObjectsFolder</opc:TargetId>
+      </opc:Reference>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+        <opc:TargetId>ua:Server</opc:TargetId>
+      </opc:Reference>
+    </opc:References>
+  </opc:Object>
+  <opc:Object EventNotifier="SubscribeToEvents" SymbolicName="Hurco02" TypeDefinition="Hurco02Type">
+    <opc:References>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:Organizes</opc:ReferenceType>
+        <opc:TargetId>ua:ObjectsFolder</opc:TargetId>
+      </opc:Reference>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+        <opc:TargetId>ua:Server</opc:TargetId>
+      </opc:Reference>
+    </opc:References>
+  </opc:Object>
+  <opc:Object EventNotifier="SubscribeToEvents" SymbolicName="Hurco03" TypeDefinition="Hurco03Type">
+    <opc:References>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:Organizes</opc:ReferenceType>
+        <opc:TargetId>ua:ObjectsFolder</opc:TargetId>
+      </opc:Reference>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+        <opc:TargetId>ua:Server</opc:TargetId>
+      </opc:Reference>
+    </opc:References>
+  </opc:Object>
+  <opc:Object EventNotifier="SubscribeToEvents" SymbolicName="Hurco04" TypeDefinition="Hurco04Type">
+    <opc:References>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:Organizes</opc:ReferenceType>
+        <opc:TargetId>ua:ObjectsFolder</opc:TargetId>
+      </opc:Reference>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+        <opc:TargetId>ua:Server</opc:TargetId>
+      </opc:Reference>
+    </opc:References>
+  </opc:Object>
+  <opc:Object EventNotifier="SubscribeToEvents" SymbolicName="Hurco05" TypeDefinition="Hurco05Type">
+    <opc:References>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:Organizes</opc:ReferenceType>
+        <opc:TargetId>ua:ObjectsFolder</opc:TargetId>
+      </opc:Reference>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+        <opc:TargetId>ua:Server</opc:TargetId>
+      </opc:Reference>
+    </opc:References>
+  </opc:Object>
+  <opc:Object EventNotifier="SubscribeToEvents" SymbolicName="Hurco06" TypeDefinition="Hurco06Type">
+    <opc:References>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:Organizes</opc:ReferenceType>
+        <opc:TargetId>ua:ObjectsFolder</opc:TargetId>
+      </opc:Reference>
+      <opc:Reference IsInverse="true">
+        <opc:ReferenceType>ua:HasNotifier</opc:ReferenceType>
+        <opc:TargetId>ua:Server</opc:TargetId>
+      </opc:Reference>
+    </opc:References>
+  </opc:Object>
+  <ns0:VariableType BaseType="ua:AnalogItemType" DataType="ua:Number" SymbolicName="MTSampleDataItemType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="CoordinateSystemTypeEnum" ModellingRule="Optional" SymbolicName="CoordinateSystem"/>
+      
+      
+      <ns0:Property DataType="ua:EUInformation" ModellingRule="Optional" SymbolicName="NativeUnits"/>
+      
+      
+      <ns0:Property DataType="ua:Float" ModellingRule="Optional" SymbolicName="NativeScale"/>
+      
+      
+      <ns0:Property DataType="ua:Duration" ModellingRule="Optional" SymbolicName="SampleInterval"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="AccelerationType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="AccumulatedTimeType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="AmperageType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="AngleType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="AngularAccelerationType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="AngularVelocityType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="AxisFeedrateType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="ConcentrationType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="ConductivityType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="DisplacementType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="ElectricalEnergyType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="FillLevelType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="FlowType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="FrequencyType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="LinearForceType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="LoadType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="MassType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="PathFeedrateType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="PathPositionType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="PHType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="PositionType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="PowerFactorType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="PressureType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="ResistanceType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="RotationalVelocityType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="SoundPressureType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="StrainType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="TemperatureType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="TiltType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="TorqueType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="VelocityType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="ViscosityType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="VoltageType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="VoltAmpereType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="VoltAmpereReactiveType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTSampleDataItemType" SymbolicName="WattageType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="ua:DiscreteItemType" DataType="ua:BaseDataType" SymbolicName="MTEventDataItemType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="CoordinateSystemTypeEnum" ModellingRule="Optional" SymbolicName="CoordinateSystem"/>
+      
+      
+      <ns0:Property DataType="ua:Duration" ModellingRule="Optional" SymbolicName="SampleInterval"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:String" SymbolicName="ActiveAxesType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ActuatorStateTypeEnum" SymbolicName="ActuatorStateType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="AvailabilityTypeEnum" SymbolicName="AvailabilityType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="AxesCouplingTypeEnum" SymbolicName="AxesCouplingType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:String" SymbolicName="BlockType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ClampStateTypeEnum" SymbolicName="ClampStateType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ControllerModeTypeEnum" SymbolicName="ControllerModeType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:String" SymbolicName="CoupledAxesType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="DirectionTypeEnum" SymbolicName="DirectionType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="DoorStateTypeEnum" SymbolicName="DoorStateType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="EmergencyStopTypeEnum" SymbolicName="EmergencyStopType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ExecutionTypeEnum" SymbolicName="ExecutionType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:UInt16" SymbolicName="LineType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:String" SymbolicName="MessageType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:String" SymbolicName="PalletIdType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:UInt16" SymbolicName="PartCountType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:String" SymbolicName="PartIdType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="PathModeTypeEnum" SymbolicName="PathModeType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="PowerStateTypeEnum" SymbolicName="PowerStateType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:String" SymbolicName="ProgramType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="RotaryModeTypeEnum" SymbolicName="RotaryModeType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:String" SymbolicName="ToolAssetIdType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:UInt16" SymbolicName="ToolNumberType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MTEventDataItemType" DataType="ua:String" SymbolicName="WorkHoldingIdType">
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType DataType="ChannelNumberDataType" SymbolicName="ChannelType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="CalibrationDateDataType" ModellingRule="Optional" SymbolicName="CalibrationDate"/>
+      
+      
+      <ns0:Property DataType="CalibrationDateDataType" ModellingRule="Optional" SymbolicName="NextCalibrationDate"/>
+      
+      
+      <ns0:Property DataType="CalibrationInitialsDataType" ModellingRule="Optional" SymbolicName="CalibrationInitials"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="ua:AnalogItemType" SymbolicName="MeasurementType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="SignificantDigitsValueDataType" ModellingRule="Optional" SymbolicName="SignificantDigits"/>
+      
+      
+      <ns0:Variable DataType="ua:EUInformation" ModellingRule="Optional" SymbolicName="Units"/>
+      
+      
+      <ns0:Variable DataType="ua:EUInformation" ModellingRule="Optional" SymbolicName="NativeUnits"/>
+      
+      
+      <ns0:Property DataType="ua:DateTime" ModellingRule="Optional" SymbolicName="LastChangeTimestamp"/>
+      
+      
+      <ns0:Property DataType="CodeDataType" ModellingRule="Optional" SymbolicName="Code"/>
+      
+      
+      <ns0:Property DataType="MeasurementValueDataType" ModellingRule="Optional" SymbolicName="Maximum"/>
+      
+      
+      <ns0:Property DataType="MeasurementValueDataType" ModellingRule="Optional" SymbolicName="Minimum"/>
+      
+      
+      <ns0:Property DataType="MeasurementValueDataType" ModellingRule="Optional" SymbolicName="Nominal"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+  
+  
+  <ns0:VariableType BaseType="ua:BaseDataVariableType" SymbolicName="CutterStatusType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="ua:String" ModellingRule="Mandatory" SymbolicName="Status"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="ua:BaseDataVariableType" SymbolicName="ReconditionCountType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="MaximumCountDataType" ModellingRule="Optional" SymbolicName="MaximumCount"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="ua:BaseDataVariableType" SymbolicName="LifeType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="ToolLifeTypeEnum" ModellingRule="Mandatory" SymbolicName="Type"/>
+      
+      
+      <ns0:Property DataType="ToolLifeDirectionTypeEnum" ModellingRule="Mandatory" SymbolicName="CountDirection"/>
+      
+      
+      <ns0:Property DataType="ToolLifeValueDataType" ModellingRule="Optional" SymbolicName="WarningLevel"/>
+      
+      
+      <ns0:Property DataType="ToolLifeValueDataType" ModellingRule="Mandatory" SymbolicName="Maximum"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="ua:BaseDataVariableType" SymbolicName="LocationType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="LocationsTypeEnum" ModellingRule="Mandatory" SymbolicName="Type"/>
+      
+      
+      <ns0:Property DataType="OverlapDataType" ModellingRule="Mandatory" SymbolicName="NegativeOverlap"/>
+      
+      
+      <ns0:Property DataType="OverlapDataType" ModellingRule="Mandatory" SymbolicName="PositiveOverlap"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="ua:BaseDataVariableType" SymbolicName="ProgramSpindleSpeedType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="MaximumDataType" ModellingRule="Mandatory" SymbolicName="Maximum"/>
+      
+      
+      <ns0:Property DataType="MinimumDataType" ModellingRule="Mandatory" SymbolicName="Minimum"/>
+      
+      
+      <ns0:Property DataType="NominalDataType" ModellingRule="Mandatory" SymbolicName="Nominal"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="ua:BaseDataVariableType" SymbolicName="ProgramFeedRateType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="MaximumDataType" ModellingRule="Mandatory" SymbolicName="Maximum"/>
+      
+      
+      <ns0:Property DataType="MinimumDataType" ModellingRule="Mandatory" SymbolicName="Minimum"/>
+      
+      
+      <ns0:Property DataType="NominalDataType" ModellingRule="Mandatory" SymbolicName="Nominal"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="ua:BaseDataVariableType" SymbolicName="CuttingItemType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Property DataType="IndexRangeDataType" ModellingRule="Mandatory" SymbolicName="Indices"/>
+      
+      
+      <ns0:Property DataType="ItemIdDataType" ModellingRule="Optional" SymbolicName="ItemId"/>
+      
+      
+      <ns0:Property DataType="GradeDataType" ModellingRule="Optional" SymbolicName="Grade"/>
+      
+      
+      <ns0:Property DataType="ManufacturersDataType" ModellingRule="Optional" SymbolicName="Manufacturers"/>
+      
+      
+      <ns0:Property DataType="AssetDescriptionType" ModellingRule="Optional" SymbolicName="Description"/>
+      
+      
+      <ns0:Property DataType="LocusDataType" ModellingRule="Optional" SymbolicName="Locus"/>
+      
+      
+      <ns0:Object ModellingRule="Optional" SymbolicName="ItemLife" TypeDefinition="ua:FolderType"/>
+      
+      
+      <ns0:Object ModellingRule="Optional" SymbolicName="Measurements" TypeDefinition="ua:FolderType"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:VariableType>
+  
+
+  
+  <ns0:VariableType BaseType="MeasurementType" SymbolicName="AssemblyMeasurementType">
+  </ns0:VariableType>
+  
+  
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="ActuatorStateTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="ACTIVE_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="INACTIVE_2"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="AlarmStateTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="ACTIVE_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="CLEARED_2"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="AssetDescriptionType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="AssetAttrDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="AssetBufferSizeDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="AssetIdDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="AvailabilityTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="AVAILABLE_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="UNAVAILABLE_2"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="AxesCouplingTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="MASTER_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="SLAVE_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="SYCHRONOUS_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="TANDEM_4"/>
+      
+      
+      <ns0:Field Identifier="5" Name="UNAVAILABLE_5"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="AxesListValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="BufferSizeDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="CalibrationDateDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="CalibrationInitialsDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="CategoryTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="CONDITION_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="EVENT_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="SAMPLE_3"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:UInt16" SymbolicName="ChannelNumberDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="ClampStateTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="CLOSED_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="INDETERMINATE_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="OPEN_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="UNAVAILABLE_4"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="ConditionDescriptionDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="ControllerModeTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="AUTOMATIC_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="MANUAL_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="MANUAL_DATA_INPUT_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="SEMI_AUTOMATIC_4"/>
+      
+      
+      <ns0:Field Identifier="5" Name="UNAVAILABLE_5"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="CoordinateSystemTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="MACHINE_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="WORK_2"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:NodeId" SymbolicName="IDDataType"/>
+  
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="CodeDataType"/>
+  
+  
+  <ns0:DataType BaseType="IDDataType" SymbolicName="ComponentIdDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="ConnectionCodeMachineSideDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="CountValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:DateTime" SymbolicName="CreationTimeDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="CutterStatusValueTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="ALLOCATED_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="AVAILABLE_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="BROKEN_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="EXPIRED_4"/>
+      
+      
+      <ns0:Field Identifier="5" Name="MEASURED_5"/>
+      
+      
+      <ns0:Field Identifier="6" Name="NEW_6"/>
+      
+      
+      <ns0:Field Identifier="7" Name="NOT_REGISTERED_7"/>
+      
+      
+      <ns0:Field Identifier="8" Name="RECONDITIONED_8"/>
+      
+      
+      <ns0:Field Identifier="9" Name="TAGGED_OUT_9"/>
+      
+      
+      <ns0:Field Identifier="10" Name="UNALLOCATED_10"/>
+      
+      
+      <ns0:Field Identifier="11" Name="UNAVAILABLE_11"/>
+      
+      
+      <ns0:Field Identifier="12" Name="UNKNOWN_12"/>
+      
+      
+      <ns0:Field Identifier="13" Name="USED_13"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Structure" SymbolicName="DataItemEnumDataType">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field DataType="DataItemEnumTypeEnum" Name="DataItemEnum"/>
+      
+      
+      <ns0:Field DataType="ua:String" Name="DataItemEnumString"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="DataItemEnumTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="ACCELERATION_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="ACCUMULATED_TIME_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="ACTIVE_AXES_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="ACTUATOR_4"/>
+      
+      
+      <ns0:Field Identifier="5" Name="ACTUATOR_STATE_5"/>
+      
+      
+      <ns0:Field Identifier="6" Name="ALARM_6"/>
+      
+      
+      <ns0:Field Identifier="7" Name="AMPERAGE_7"/>
+      
+      
+      <ns0:Field Identifier="8" Name="ANGLE_8"/>
+      
+      
+      <ns0:Field Identifier="9" Name="ANGULAR_ACCELERATION_9"/>
+      
+      
+      <ns0:Field Identifier="10" Name="ANGULAR_VELOCITY_10"/>
+      
+      
+      <ns0:Field Identifier="11" Name="ASSET_CHANGED_11"/>
+      
+      
+      <ns0:Field Identifier="12" Name="AVAILABILITY_12"/>
+      
+      
+      <ns0:Field Identifier="13" Name="AXIS_COUPLING_13"/>
+      
+      
+      <ns0:Field Identifier="14" Name="AXIS_FEEDRATE_14"/>
+      
+      
+      <ns0:Field Identifier="15" Name="BLOCK_15"/>
+      
+      
+      <ns0:Field Identifier="16" Name="CODE_16"/>
+      
+      
+      <ns0:Field Identifier="17" Name="COMMUNICATIONS_17"/>
+      
+      
+      <ns0:Field Identifier="18" Name="CONCENTRATION_18"/>
+      
+      
+      <ns0:Field Identifier="19" Name="CONDUCTIVITY_19"/>
+      
+      
+      <ns0:Field Identifier="20" Name="CONTROLLER_MODE_20"/>
+      
+      
+      <ns0:Field Identifier="21" Name="COUPLED_AXES_21"/>
+      
+      
+      <ns0:Field Identifier="22" Name="DIRECTION_22"/>
+      
+      
+      <ns0:Field Identifier="23" Name="DISPLACEMENT_23"/>
+      
+      
+      <ns0:Field Identifier="24" Name="DOOR_STATE_24"/>
+      
+      
+      <ns0:Field Identifier="25" Name="ELECTRICAL_POWER_25"/>
+      
+      
+      <ns0:Field Identifier="26" Name="EMERGENCY_STOP_26"/>
+      
+      
+      <ns0:Field Identifier="27" Name="EXECUTION_27"/>
+      
+      
+      <ns0:Field Identifier="28" Name="FILL_LEVEL_28"/>
+      
+      
+      <ns0:Field Identifier="29" Name="FLOW_29"/>
+      
+      
+      <ns0:Field Identifier="30" Name="FREQUENCY_30"/>
+      
+      
+      <ns0:Field Identifier="31" Name="HARDWARE_31"/>
+      
+      
+      <ns0:Field Identifier="32" Name="LEVEL_32"/>
+      
+      
+      <ns0:Field Identifier="33" Name="LINE_33"/>
+      
+      
+      <ns0:Field Identifier="34" Name="LINEAR_FORCE_34"/>
+      
+      
+      <ns0:Field Identifier="35" Name="LOAD_35"/>
+      
+      
+      <ns0:Field Identifier="36" Name="LOGIC_PROGRAM_36"/>
+      
+      
+      <ns0:Field Identifier="37" Name="MASS_37"/>
+      
+      
+      <ns0:Field Identifier="38" Name="MESSAGE_38"/>
+      
+      
+      <ns0:Field Identifier="39" Name="MOTION_PROGRAM_39"/>
+      
+      
+      <ns0:Field Identifier="40" Name="PART_COUNT_40"/>
+      
+      
+      <ns0:Field Identifier="41" Name="PART_ID_41"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="DataItemIdDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Structure" SymbolicName="DataItemStatisticsDataType">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field DataType="DataItemStatisticsTypeEnum" Name="DataItemStatisticsEnum"/>
+      
+      
+      <ns0:Field DataType="ua:String" Name="DataItemStatisticsString"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="DataItemStatisticsTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="AVERAGE_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="KURTOSIS_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="MAXIMUM_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="MEAN_4"/>
+      
+      
+      <ns0:Field Identifier="5" Name="MINIMUM_5"/>
+      
+      
+      <ns0:Field Identifier="6" Name="MODE_6"/>
+      
+      
+      <ns0:Field Identifier="7" Name="RANGE_7"/>
+      
+      
+      <ns0:Field Identifier="8" Name="ROOT_MEAN_SQUARE_8"/>
+      
+      
+      <ns0:Field Identifier="9" Name="STANDARD_DEVIATION_9"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="DataItemSubEnumTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="ACTUAL_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="ALL_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="ALTERNATING_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="A_SCALE_4"/>
+      
+      
+      <ns0:Field Identifier="5" Name="BAD_5"/>
+      
+      
+      <ns0:Field Identifier="6" Name="B_SCALE_6"/>
+      
+      
+      <ns0:Field Identifier="7" Name="COMMANDED_7"/>
+      
+      
+      <ns0:Field Identifier="8" Name="CONTROL_8"/>
+      
+      
+      <ns0:Field Identifier="9" Name="C_SCALE_9"/>
+      
+      
+      <ns0:Field Identifier="10" Name="DIRECT_10"/>
+      
+      
+      <ns0:Field Identifier="11" Name="DYNAMIC_11"/>
+      
+      
+      <ns0:Field Identifier="12" Name="D_SCALE_12"/>
+      
+      
+      <ns0:Field Identifier="13" Name="GOOD_13"/>
+      
+      
+      <ns0:Field Identifier="14" Name="KINETIC_14"/>
+      
+      
+      <ns0:Field Identifier="15" Name="LINE_15"/>
+      
+      
+      <ns0:Field Identifier="16" Name="MAXIMUM_16"/>
+      
+      
+      <ns0:Field Identifier="17" Name="MINIMUM_17"/>
+      
+      
+      <ns0:Field Identifier="18" Name="MOLE_18"/>
+      
+      
+      <ns0:Field Identifier="19" Name="NO_SCALE_19"/>
+      
+      
+      <ns0:Field Identifier="20" Name="OTHER_20"/>
+      
+      
+      <ns0:Field Identifier="21" Name="OVERRIDE_21"/>
+      
+      
+      <ns0:Field Identifier="22" Name="PROBE_22"/>
+      
+      
+      <ns0:Field Identifier="23" Name="TARGET_23"/>
+      
+      
+      <ns0:Field Identifier="24" Name="VOLUME_24"/>
+      
+      
+      <ns0:Field Identifier="25" Name="WEIGHT_25"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="DefinitionFormatTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="EXPRESS_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="TEXT_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="UNDEFINED_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="XML_4"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="DecibelValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="DescriptionTextDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="DirectionTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="CLOCKWISE_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="COUNTER_CLOCKWISE_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="NEGATIVE_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="POSITIVE_4"/>
+      
+      
+      <ns0:Field Identifier="5" Name="UNAVAILABLE_5"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="DoorStateTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="CLOSED_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="INDETERMINATE_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="OPEN_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="UNAVAILABLE_4"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Float" SymbolicName="DurationTimeDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="DurationValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="EdgeCountDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="EmergencyStopTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="ARMED_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="TRIGGERED_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="UNAVAILABLE_3"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="EnergyValueDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="ExecutionTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="ACTIVE_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="INTERRUPTED_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="READY_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="STOPPED_4"/>
+      
+      
+      <ns0:Field Identifier="5" Name="UNAVAILABLE_5"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="FeedrateValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="FirmwareVersionDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="ForceValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="GradeDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="IndexRangeDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="InstanceIdDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="ItemIdDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="InterfaceStateTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="ACTIVE_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="COMPLETE_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="FAIL_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="READY_4"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="ItemSourceDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="LocationSizeDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="LocationValueDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="LocationsTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="CRIB_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="POT_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="STATION_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="READY_4"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="LocusDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="ManufacturersDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="MassValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="MaximumCountDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Float" SymbolicName="MaximumDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Float" SymbolicName="MeasurementValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Float" SymbolicName="MinimumDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="ModelDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="NameDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="NativeCodeDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="NativeNotifcationCodeDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Float" SymbolicName="NativeScaleDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="NativeSeverityDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:DateTime" SymbolicName="NextCalibrationDateDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Float" SymbolicName="NominalDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="NotificationCodeTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="CRASH_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="ESTOP_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="FAILURE_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="FAULT_4"/>
+      
+      
+      <ns0:Field Identifier="5" Name="JAM_5"/>
+      
+      
+      <ns0:Field Identifier="6" Name="MATERIAL_6"/>
+      
+      
+      <ns0:Field Identifier="7" Name="MESSAGE_7"/>
+      
+      
+      <ns0:Field Identifier="8" Name="OTHER_8"/>
+      
+      
+      <ns0:Field Identifier="9" Name="OVERLOAD_9"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="NotificationDescriptionDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:DateTime" SymbolicName="OccurrenceTimeDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="OverlapDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="PathModeTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="INDEPENDENT_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="MIRROR_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="SYNCHRONOUS_3"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="PowerStateTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="OFF_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="ON_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="UNAVAILABLE_3"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="ProgramToolNumberDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="QualifierTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="HIGH_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="LOW_2"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+  
+  
+  <ns0:DataType BaseType="ua:Float" SymbolicName="RateDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="ReconditionCountValueDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="RotaryModeTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="CONTOUR_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="INDEX_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="SPINDLE_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="UNAVAILABLE_4"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+  
+  
+  <ns0:DataType BaseType="ua:Float" SymbolicName="SampleRateDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="SeverityTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="CRITICAL_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="ERROR_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="INFORMATION_3"/>
+      
+      
+      <ns0:Field Identifier="4" Name="WARNING_4"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="SignificantDigitsValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="StationDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="SenderDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Integer" SymbolicName="SequenceDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="SerialNumberDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Float" SymbolicName="SpeedDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:Boolean" SymbolicName="TestIndicatorDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="ToolEventValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="ToolGroupDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="ToolIdDataType"/>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="ToolLifeDirectionTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="DOWN_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="UP_2"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+
+  
+  <ns0:DataType BaseType="ua:Enumeration" SymbolicName="ToolLifeTypeEnum">
+    
+    
+    <ns0:Fields>
+      
+      
+      <ns0:Field Identifier="1" Name="MINUTES_1"/>
+      
+      
+      <ns0:Field Identifier="2" Name="PART_COUNT_2"/>
+      
+      
+      <ns0:Field Identifier="3" Name="WEAR_3"/>
+      
+    
+    </ns0:Fields>
+    
+  
+  </ns0:DataType>
+  
+  
+  
+  <ns0:DataType BaseType="ua:Float" SymbolicName="ToolLifeValueDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="UnitsExtDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="VersionDataType"/>
+  
+  
+  <ns0:DataType BaseType="ua:String" SymbolicName="VibrationValueDataType"/>
+  
+
+
+  <ns0:ObjectType BaseType="ua:ConditionType" SymbolicName="MTConditionType">
+    
+    
+    <ns0:Children>
+      
+      
+      <ns0:Variable DataType="ua:String" ModellingRule="Mandatory" SymbolicName="MTCurrentState" TypeDefinition="ua:BaseDataVariableType"/>
+      
+      
+      <ns0:Variable DataType="ua:LocalizedText" ModellingRule="Mandatory" SymbolicName="ActiveState" TypeDefinition="ua:TwoStateVariableType"/>
+      
+      
+      <ns0:Object ModellingRule="Optional" SymbolicName="LimitState" TypeDefinition="ua:ExclusiveLimitStateMachineType"/>
+      
+      
+      <ns0:Property DataType="ua:String" ModellingRule="Optional" SymbolicName="NativeCode"/>
+      
+      
+      <ns0:Property DataType="ua:String" ModellingRule="Optional" SymbolicName="NativeSeverity"/>
+      
+    
+    </ns0:Children>
+    
+  
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="AccelerationConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Accumulated_TimeConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="AmperageConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="AngleConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Angular_AccelerationConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Angular_VelocityConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="CommunicationsConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="ConcentrationConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="ConductivityConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Data_RangeConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="DirectionConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="DisplacementConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Electrical_EnergyConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Fill_LevelConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="FlowConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="FrequencyConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="HardwareConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Linear_ForceConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="LoadConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Logic_ProgramConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="MassConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Motion_ProgramConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Path_FeedrateConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Path_PositionConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="PHConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="PositionConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Power_FactorConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="PressureConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="ResistanceConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Rotary_VelocityConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Sound_LevelConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="StrainConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="SystemConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="TemperatureConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="TiltConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="TorqueConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="VelocityConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="ViscosityConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="VoltageConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="Volt_AmperageConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="VoltAmperageReactiveConditionType">
+  </ns0:ObjectType>
+  
+
+  
+  <ns0:ObjectType BaseType="MTConditionType" SymbolicName="WattageConditionType">
+  </ns0:ObjectType>
+  
+
+  
+</opc:ModelDesign>
