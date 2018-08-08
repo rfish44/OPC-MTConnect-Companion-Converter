@@ -5,10 +5,10 @@ Created on Wed Jun 13 08:41:53 2018
 
 @author: Ryan Fisher
 
-This file probes an MTConnect file and produces an OPC-UA/MTConnect Companion format that can be
+This file probes an MTConnect file and automatically produces an OPC-UA/MTConnect Companion format that can be
 uploaded to a server. An XML output is generated, but a model compiler is executed on the
 XML file to create .uanodes. These nodes are automatically sent to the structure library for
-the server.
+the server. This node generator should create objects and variables for all items in the MTConnect file.
 
 Information on xml.etree.ElementTree module can be found at: https://docs.python.org/2/library/xml.etree.elementtree.html
 
@@ -26,13 +26,13 @@ from xml.dom import minidom     # For printing 'pretty' xml format
 import time
 import subprocess
 
-### Functions
+### Basic Functions
 def move_files():
     # Copies the files, created from the converter, to the server folder.
     # Overwrites files already there to update nodes
     # Set the file source and destination:
-    # The source should be: root_src_dir = r"...\UA-ModelCompiler-master\Published\MTConnect"
-    # The destination should be: root_dst_dir = r"...\UA-.NETStandard-master\SampleApplications\Workshop\Boiler\Server"
+    # The source should be "...\UA-ModelCompiler-master\Published\MTConnect"
+    # The destination should be "...\UA-.NETStandard-master\SampleApplications\Workshop\Boiler\Server"
     root_src_dir = os.getcwd()  # Source
     root_dst_dir = os.getcwd()  # Destination
     try:
@@ -53,7 +53,7 @@ def move_files():
 def execute_batch():
     # The batch file to converts the XML to .uanodes
     # Set the file path to ".../UA-ModelCompiler-master/"
-    filepath = "set file path here"
+    filepath = root_dst_dir
     p = subprocess.Popen("BuildStandardTypes.bat", cwd=filepath)
     stdout, stderr = p.communicate()
     print("Batch file executed...")
@@ -155,6 +155,8 @@ def set_standard_namespace_attributes(root):
 
     return root
 
+### The following functions are used to recursively generate nodes
+### by identifying components and data items as objects and variables.
 def create_object(root_in, root_out, parent, SymbolicName, TypeDef):
     ''' 
     Creates an object in the XML Companion format 
@@ -165,28 +167,6 @@ def create_object(root_in, root_out, parent, SymbolicName, TypeDef):
     Object.set("SymbolicName",SymbolicName)
     Object.set("TypeDefinition", TypeDef)
     References = Element(namespace2 + "References")
-
-    # # Reference One
-    # Reference = Element(namespace2 + "Reference")
-    # Reference.set("IsInverse","true")
-    # ReferenceType = Element(namespace2 + "ReferenceType")
-    # ReferenceType.text = namespace3 + "Organizes"
-    # TargetId = Element(namespace2 + "TargetId")
-    # TargetId.text = parent
-    # Reference.append(ReferenceType)
-    # Reference.append(TargetId)
-    # References.append(Reference)
-
-    # # Reference Two
-    # Reference = Element(namespace2 + "Reference")
-    # Reference.set("IsInverse", "true")
-    # ReferenceType = Element(namespace2 + "ReferenceType")
-    # ReferenceType.text = namespace3 + "HasNotifier"
-    # TargetId = Element(namespace2 + "TargetId")
-    # TargetId.text = namespace3 + "Server"
-    # Reference.append(ReferenceType)
-    # Reference.append(TargetId)
-    # References.append(Reference)
 
     parent.append(Object)
     return parent
@@ -202,32 +182,17 @@ def create_variable(root_in, root_out, Object, SymbolicName, DataType):
     Variable.set("ModellingRule", "Mandatory")
     Variable.set("DataType", namespace3 + DataType)
 
-    # # Reference One
-    # Reference = Element(namespace2 + "Reference")
-    # Reference.set("IsInverse", "true")
-    # ReferenceType = Element(namespace2 + "ReferenceType")
-    # ReferenceType.text = namespace3 + "Organizes"
-    # TargetId = Element(namespace2 + "TargetId")
-    # TargetId.text = parent
-    # Reference.append(ReferenceType)
-    # Reference.append(TargetId)
-    # References.append(Reference)
-
-    # # Reference Two
-    # Reference = Element(namespace2 + "Reference")
-    # Reference.set("IsInverse", "true")
-    # ReferenceType = Element(namespace2 + "ReferenceType")
-    # ReferenceType.text = namespace3 + "HasNotifier"
-    # TargetId = Element(namespace2 + "TargetId")
-    # TargetId.text = namespace3 + "Server"
-    # Reference.append(ReferenceType)
-    # Reference.append(TargetId)
-    # References.append(Reference)
-
     Object.append(Variable)
     return Object
 
 def create_objectType(object, root_out):
+    '''
+        <summary>
+        Creates an object type and appends it to the root.
+        Input: object, root_out
+        Output:  None
+        <summary>
+    '''
     object_name = object.tag.replace(namespace, '')
     object_name = object_name_filter(object_name, object)
 
@@ -255,6 +220,14 @@ def create_objectType(object, root_out):
         root_out.append(ObjectType)
 
 def object_name_filter(object_name, object):
+    '''
+        <summary>
+        Takes an objects name as a string and filters it for 
+        characters that the model compiler or server rejects.
+        Input: object_name, object
+        Output:  object_name
+        <summary>
+    '''
     if "Device" in object_name:
         object_name = object.attrib['id']
         object_name = object_name.replace("-","_")
@@ -274,7 +247,36 @@ def object_name_filter(object_name, object):
             object_name = object.tag.replace(namespace, '')
     return object_name
 
+def variable_name_filter(SymbolicName, DataItem):
+    '''
+        <summary>
+        Takes an objects name as a string and filters it for 
+        characters that the model compiler or server rejects.
+        Input: SymbolicName, DataItem
+        Output:  SymbolicName
+        <summary>
+    '''
+    if SymbolicName == "PATH_FEEDRATE":
+            SymbolicName = SymbolicName + "_" + DataItem.attrib['units']
+    if ":" in SymbolicName:
+        SymbolicName = SymbolicName.replace(":","")
+    if "/" in SymbolicName:
+        SymbolicName = SymbolicName.replace("/","_PER_")
+    if "#" in SymbolicName:
+        SymbolicName = SymbolicName.replace("#","num")
+
+    return SymbolicName        
 def make_children_objects(child, Children):
+    '''
+        <summary>
+        Makes children into their respective items. If the child
+        is a component, it is translated to an object. If the child
+        is a Description, it is made into a variable. If the child 
+        is a DataItem, variables are created for them. 
+        Input: child, Children
+        Output:  Children
+        <summary>
+    '''
     object_name = child.tag.replace(namespace, '')
     print("OBJECT_name is : ", object_name)
     object_name = object_name_filter(object_name, child)
@@ -296,15 +298,34 @@ def make_children_objects(child, Children):
     return Children
 
 def find_more_children(parent, object_list):
+    '''
+        <summary>
+        This function finds all the children of a component, and if
+        there is a component, it is appended to the object list. If
+        it is a DataItem or Description, the child IS NOT added to 
+        the object list, since these translate as variables. This 
+        function is recursive, finding all objects.
+        Input: child, Children
+        Output:  Children
+        <summary>
+    '''
     for child in parent:
         if child.tag == namespace + "DataItems" or child.tag == namespace + "Description":
-            #get_data_items(child, Children)
             pass
         else:
             object_list.append(child)
             find_more_children(child, object_list)
 
 def get_data_items(DataItems, Children):
+    '''
+        <summary>
+        This function finds all "DataItem"s for a "DataItems" parent.
+        The data items are then turned into variables and appended
+        to the the Children tag.
+        Input: DataItems, Children
+        Output:  Children
+        <summary>
+    '''
     for DataItem in DataItems:
         ### Establish a SymbolicName for each variable
         try:
@@ -313,14 +334,7 @@ def get_data_items(DataItems, Children):
             SymbolicName = DataItem.attrib['type']
 
         ### Renames the variable to conform to Model Compiler
-        if SymbolicName == "PATH_FEEDRATE":
-            SymbolicName = SymbolicName + "_" + DataItem.attrib['units']
-        if ":" in SymbolicName:
-            SymbolicName = SymbolicName.replace(":","")
-        if "/" in SymbolicName:
-            SymbolicName = SymbolicName.replace("/","_PER_")
-        if "#" in SymbolicName:
-            SymbolicName = SymbolicName.replace("#","num")
+        SymbolicName = variable_name_filter(SymbolicName, DataItem)
 
         ### Establishes a DataType for each Variable
         DataItemCategory = DataItem.attrib['category']
@@ -523,7 +537,7 @@ def set_Model(root_in, root_out, Property, device):
 
 ### Defines URLs
 # url = 'http://simulator.memexoee.com/'
-url = 'http://agent.mtconnect.org/'
+url = 'http://agent.mtconnect.org/probe'
 
 # # Gets data from websites
 # Uncomment this section to probe a website
@@ -606,7 +620,7 @@ axes_label = 1001
 runThrough = 0
 for device in all_devices: # Creates node sets for each device
     ### Checks for tools
-    # Creates CuttingTool Object for each Device
+    # Creates an Object for each Device
     deviceType = device
     Object = Element(namespace2 + "Object")
     Object.set("SymbolicName", device)
@@ -637,45 +651,15 @@ for device in all_devices: # Creates node sets for each device
     Object.append(References)
     root_out.append(Object)
 
-    # Defines a CuttingToolType
-    if (("Memex_3Axis" in device or "Mazak" in device) and CuttingToolTypeCount < 1) or runThrough == 0:
-        ### Creates ObjectType
-        deviceType = "CuttingTool"
-        # ObjectType = Element(namespace2 + "ObjectType")
-        # ObjectType = set_SymbolicName_and_BaseType(ObjectType, deviceType + "sType", namespace3 + 'FolderType')
-        # Children = Element(namespace2 + "Children")
-
-        # # Makes the variables
-        # Variable = Element(namespace2 + "Variable")
-        # set_MTConnect_Version(root_in, root_out, Variable)
-        # Children.append(Variable)
-
-        # Variable = Element(namespace2 + "Variable")
-        # set_OPCUAMappingData(root_in, root_out, Variable)
-        # Children.append(Variable)
-
-        # Variable = Element(namespace2 + "Variable")
-        # set_OPCUAVersion(root_in, root_out, Variable)
-        # Children.append(Variable)
-
-        # ObjectType.append(Children)
-        # root_out.append(ObjectType)
-    
-
-        ### Creates ObjectType   :    Lines 69-80 in MTConnectModel.xml
-
-        # deviceType = "CuttingTool"
-        # ObjectType = Element(namespace2 + "ObjectType")
-        # ObjectType = set_SymbolicName_and_BaseType(ObjectType, deviceType + "Type", namespace3 + 'BaseObjectType')
-        # Children = Element(namespace2 + "Children")
-
+    if runThrough == 0:
+        ### Creates ObjectTypes, Objects, and Variables
         #################################################
         Devices = root_in.iter(namespace + 'Device')
         device = []
         object_list = []
         runThrough += 1
 
-        #for device_elements in Devices:
+        # Finds all objects and their children
         for device_elements in root_in:
             find_more_children(device_elements, object_list)
 
@@ -685,571 +669,14 @@ for device in all_devices: # Creates node sets for each device
 
         print("Object list is: " , object_list)
 
+        # Makes an object type for each object in the list
         for object in object_list:
+            # Ensures a bypass occurs on "Component" tags
             if object.tag.replace(namespace, '') != "Components":
-                # if object.tag.replace(namespace, '') == "Description":
-                #     objectText = object.text
-                #     objectText = objectText.replace(" ","_")
-                #     objectText = objectText.replace("-", "_")
-                #     object.tag = object.tag + object.text
                 create_objectType(object, root_out)
 
-        print("Completed that part successfully")
+        print("Completed the XML Companion generation successfully")
 
-        # ObjectType.append(Children)
-        # root_out.append(ObjectType)
-
-        CuttingToolTypeCount +=1
-
-    ### Checks for EDM Tools
-    # Creates EDMTool Object for each Device
-    # if ("GFAgie" in device):
-    #     ### Creates first Object   :    Lines 56-67 in MTConnectModel.xml
-    #     # This is standard for every MTConnect file
-    #     deviceType = "EDMTool"
-    #     Object = Element(namespace2 + "Object")
-    #     Object.set("SymbolicName", device)
-    #     Object.set("TypeDefinition", deviceType + "Type")
-    #     References = Element(namespace2 + "References")
-    #     Reference = Element(namespace2 + "Reference")
-    #     Reference.set("IsInverse", "true")
-    #     ReferenceType = Element(namespace2 + "ReferenceType")
-    #     ReferenceType.text = namespace3 + "Organizes"
-    #     TargetId = Element(namespace2 + "TargetId")
-    #     TargetId.text = namespace3 + "ObjectsFolder"
-
-    #     Reference.append(ReferenceType)
-    #     Reference.append(TargetId)
-    #     References.append(Reference)
-
-    #     Reference = Element(namespace2 + "Reference")
-    #     Reference.set("IsInverse", "true")
-    #     ReferenceType = Element(namespace2 + "ReferenceType")
-    #     ReferenceType.text = namespace3 + "HasNotifier"
-    #     TargetId = Element(namespace2 + "TargetId")
-    #     TargetId.text = namespace3 + "Server"
-
-    #     Reference.append(ReferenceType)
-    #     Reference.append(TargetId)
-    #     References.append(Reference)
-    #     Object.append(References)
-    #     root_out.append(Object)
-
-    #     '''
-    #     # Finds different components
-    #     Devices = root_in.iter(namespace + 'Device')
-    #     component_list = []
-    #     device_elments_list = []
-    #     for device_elments in Devices:
-    #         if device_elments.attrib['name'] == device:
-    #             break
-    #     Components = device_elments.findall(namespace + "Components")
-    #     Components = Components[0]
-    #     # Finds the axes branch
-    #     Axes = Components.findall(namespace + "Axes")
-    #     Axes = Axes[0]
-    #     old_axes_name = ''
-        
-    #     try:
-    #         # Finds linear components
-    #         Linear = Axes.iter(namespace + "Linear")
-    #         for i in Linear:
-    #             Property = Element(namespace2 + "Property")
-    #             axes_name = i.attrib['name']
-    #             # Checks to see if there is another axes in the same orientation
-    #             if axes_name == old_axes_name:
-    #                 create_variable(root_in, root_out,
-    #                     "Axes"+ str(axes_label), 
-    #                     i.attrib['name'] + i.attrib['id'][-1], 
-    #                     namespace3 +  "DataItemType", 
-    #                     "Double")
-    #             else:
-    #                 create_variable(root_in, root_out,
-    #                     "Axes"+ str(axes_label), 
-    #                     i.attrib['name'], 
-    #                     namespace3 +  "DataItemType",
-    #                     "Double")
-    #             old_axes_name = axes_name
-
-    #     except:
-    #         pass
-    #     old_rotary_name = ''
-    #     try:
-    #         Rotary = Axes.iter(namespace + "Rotary")
-    #         for i in Rotary:
-    #             Property = Element(namespace2 + "Property")
-    #             rotary_name = i.attrib['name']
-    #             # Checks to see if there is another rotary in the same orientation
-    #             if rotary_name == old_rotary_name:
-    #                 new_name = i.attrib['name'] + i.attrib['id'][-1]
-    #                 create_variable(root_in,root_out,
-    #                     "Axes"+ str(axes_label),
-    #                     new_name, 
-    #                     namespace3 +  "DataItemType", 
-    #                     "Double")
-
-    #             else:
-    #                 create_variable(root_in,root_out,
-    #                     "Axes"+ str(axes_label),
-    #                     i.attrib['name'], 
-    #                     namespace3 +  "DataItemType", 
-    #                     "Double")
-    #             old_rotary_name = rotary_name
-    #     except:
-    #         pass
-    #     '''
-    #     axes_label = axes_label + 1000
-    # # Defines an EDMToolType
-    # if ("GFAgie" in device) and EDMToolCount < 1:
-    #     deviceType = "EDMTool"
-    #     ObjectType = Element(namespace2 + "ObjectType")
-    #     ObjectType = set_SymbolicName_and_BaseType(ObjectType, deviceType + "sType", namespace3 + 'FolderType')
-    #     Children = Element(namespace2 + "Children")
-
-    #     # Makes the variables
-    #     Variable = Element(namespace2 + "Variable")
-    #     set_MTConnect_Version(root_in, root_out, Variable)
-    #     Children.append(Variable)
-
-    #     Variable = Element(namespace2 + "Variable")
-    #     set_OPCUAMappingData(root_in, root_out, Variable)
-    #     Children.append(Variable)
-
-    #     Variable = Element(namespace2 + "Variable")
-    #     set_OPCUAVersion(root_in, root_out, Variable)
-    #     Children.append(Variable)
-
-    #     ObjectType.append(Children)
-    #     root_out.append(ObjectType)
-
-    #     ### Creates ObjectType   :    Lines 69-80 in MTConnectModel.xml
-
-    #     deviceType = "EDMTool"
-    #     ObjectType = Element(namespace2 + "ObjectType")
-    #     ObjectType = set_SymbolicName_and_BaseType(ObjectType, deviceType + "Type", namespace3 + 'BaseObjectType')
-    #     Children = Element(namespace2 + "Children")
-
-    #     # Makes the variables
-    #     Variable = Element(namespace2 + "Variable")
-    #     set_Availability(root_in, root_out, Variable)
-    #     Children.append(Variable)
-
-    #     # Makes the variables
-    #     Property = Element(namespace2 + "Property")
-    #     set_Manufacturer(root_in, root_out, Property)
-    #     Children.append(Property)
-
-    #     # Makes the variables
-    #     Property = Element(namespace2 + "Property")
-    #     set_SerialNumber(root_in, root_out, Property, device)
-    #     Children.append(Property)
-
-    #     # Finds and sets the Configuration
-    #     # This is temporarily Empyty
-
-    #     # Makes the variables
-    #     Property = Element(namespace2 + "Property")
-    #     set_SampleInterval(root_in, root_out, Property, device)
-    #     Children.append(Property)
-
-    #     # Makes the variables
-    #     Object = Element(namespace2 + "Object")
-    #     set_SymbolicName_TypeDefinition_and_ModellingRule(Object, "DataItems", namespace3 + "FolderType", "Mandatory")
-    #     Children.append(Object)
-
-    #     # Makes the variables
-    #     Object = Element(namespace2 + "Object")
-    #     set_SymbolicName_TypeDefinition_and_ModellingRule(Object, "Components", namespace3 + "FolderType", "Mandatory")
-    #     Children.append(Object)
-
-    #     # Makes the variables
-    #     Object = Element(namespace2 + "Object")
-    #     set_SymbolicName_TypeDefinition_and_ModellingRule(Object, "Conditions", namespace3 + "FolderType", "Optional")
-    #     Children.append(Object)
-
-    #     # Makes the axes object
-    #     Object = Element(namespace2 + "Object")
-    #     set_SymbolicName_TypeDefinition_and_ModellingRule(Object, "Axes", deviceType + "AxesType", "Mandatory")
-    #     Children.append(Object)
-
-    #     ObjectType.append(Children)
-    #     root_out.append(ObjectType)
-
-    #     ### Creates ObjectType   :    Lines 82-87 in MTConnectModel.xml
-    #     # Finds different components
-    #     Devices = root_in.iter(namespace + 'Device')
-    #     component_list = []
-    #     device_elments_list = []
-    #     for device_elments in Devices:
-    #         if device_elments.attrib['name'] == device:
-    #             break
-    #     Components = device_elments.findall(namespace + "Components")
-    #     Components = Components[0]
-
-    #     ObjectType = Element(namespace2 + "ObjectType")
-    #     set_SymbolicName_and_BaseType(ObjectType, deviceType+"ComponentType", namespace3 + 'BaseObjectType')
-    #     Children = Element(namespace2 + "Children")
-    #     # Makes Model element
-    #     Property = Element(namespace2 + "Property")
-    #     # set_Model(root_in, root_out, Property, device)
-    #     set_SymbolicName_DataType_and_ModellingRule(Property, "Model", namespace3 + "String", "Optional")
-    #     Children.append(Property)
-    #     # Makes Station element
-    #     Property = Element(namespace2 + "Property")
-    #     set_SymbolicName_DataType_and_ModellingRule(Property, "Station", namespace3 + "Duration", "Optional")
-    #     Children.append(Property)
-
-    #     ObjectType.append(Children)
-    #     root_out.append(ObjectType)
-
-    #     ### Creates ObjectType   :    Lines 89-98 in MTConnectModel.xml
-    #     ObjectType = Element(namespace2 + "ObjectType")
-    #     set_SymbolicName_and_BaseType(ObjectType, deviceType+"AxesType", namespace3 + 'BaseObjectType')
-    #     Children = Element(namespace2 + "Children")
-    #     # Finds component first
-    #     Devices = root_in.iter(namespace + 'Device')
-    #     # Finds device elment
-
-    #     component_list = []
-    #     device_elments_list = []
-    #     for device_elments in Devices:
-    #         if device_elments.attrib['name'] == device:
-    #             break
-    #     Components = device_elments.findall(namespace + 'Components')
-    #     Components = Components[0]
-    #     for j in Components:
-    #         component = j.attrib['name']
-    #         component_list.append(component)
-
-    #     Axes = Components.findall(namespace + "Axes")
-    #     Axes = Axes[0]
-        
-    #     old_axes_name = ''
-    #     try:
-    #         Linear = Axes.iter(namespace + "Linear")
-    #         for i in Linear:
-    #             Variable = Element(namespace2 + "Variable")
-    #             axes_name = i.attrib['name']
-    #             # Checks to see if there is another axes in the same orientation
-    #             if axes_name == old_axes_name:
-    #                 set_SymbolicName_DataType_and_ModellingRule(Variable, i.attrib['name'] + i.attrib['id'][-1],
-    #                                                              namespace3+"String", "Mandatory")
-    #             else:
-    #                 set_SymbolicName_DataType_and_ModellingRule(Variable, i.attrib['name'], namespace3 + "String",
-    #                                                              "Mandatory")
-    #             old_axes_name = axes_name
-    #             Children.append(Variable)
-
-    #         if Linear == "NO Position FOUND":
-    #             print("NO Position FOUND")
-    #         elif Linear == []:
-    #             print("NO Position FOUND. EMPTY LIST.")
-    #     except:
-    #         pass
-
-    #     old_rotary_name = ''
-    #     try:
-    #         Rotary = Axes.iter(namespace + "Rotary")
-    #         for i in Rotary:
-    #             Variable = Element(namespace2 + "Variable")
-    #             rotary_name = i.attrib['name']
-    #             # Checks to see if there is another rotary in the same orientation
-    #             if rotary_name == old_rotary_name:
-    #                 new_name = i.attrib['name'] + i.attrib['id'][-1]
-    #                 set_SymbolicName_DataType_and_ModellingRule(Variable, new_name, namespace3 + "String", "Mandatory")
-    #             else:
-    #                 set_SymbolicName_DataType_and_ModellingRule(Variable, i.attrib['name'], namespace3 + "String",
-    #                                                              "Mandatory")
-    #             old_rotary_name = rotary_name
-    #             Children.append(Variable)
-
-    #         if Rotary == "NO Position FOUND":
-    #             print("NO RotaryPosition FOUND")
-    #         elif Rotary == []:
-    #             print("NO RotaryPosition FOUND. EMPTY LIST.")
-
-    #     except:
-    #         Position = "NO Rotary Position FOUND"
-
-    #     ObjectType.append(Children)
-    #     root_out.append(ObjectType)
-    #     EDMToolCount += 1
-
-    # ### Checks for CNC Tools
-    # # Creates CNCTool Object for each Device
-    # if ("Hurco" in device):
-    #     ### Creates first Object   :    Lines 56-67 in MTConnectModel.xml
-    #     # This is standard for every MTConnect file
-    #     deviceType = "CNCTool"
-    #     Object = Element(namespace2 + "Object")
-    #     Object.set("SymbolicName", device)
-    #     Object.set("TypeDefinition", deviceType + "Type")
-    #     References = Element(namespace2 + "References")
-    #     Reference = Element(namespace2 + "Reference")
-    #     Reference.set("IsInverse", "true")
-    #     ReferenceType = Element(namespace2 + "ReferenceType")
-    #     ReferenceType.text = namespace3 + "Organizes"
-    #     TargetId = Element(namespace2 + "TargetId")
-    #     TargetId.text = namespace3 + "ObjectsFolder"
-
-    #     Reference.append(ReferenceType)
-    #     Reference.append(TargetId)
-    #     References.append(Reference)
-
-    #     Reference = Element(namespace2 + "Reference")
-    #     Reference.set("IsInverse", "true")
-    #     ReferenceType = Element(namespace2 + "ReferenceType")
-    #     ReferenceType.text = namespace3 + "HasNotifier"
-    #     TargetId = Element(namespace2 + "TargetId")
-    #     TargetId.text = namespace3 + "Server"
-
-    #     Reference.append(ReferenceType)
-    #     Reference.append(TargetId)
-    #     References.append(Reference)
-    #     Object.append(References)
-    #     root_out.append(Object)
-
-    #     '''
-    #     # Finds different components
-    #     Devices = root_in.iter(namespace + 'Device')
-    #     component_list = []
-    #     device_elments_list = []
-    #     for device_elments in Devices:
-    #         if device_elments.attrib['name'] == device:
-    #             break
-    #     Components = device_elments.findall(namespace + "Components")
-    #     Components = Components[0]
-    #     # Finds the axes branch
-    #     Axes = Components.findall(namespace + "Axes")
-    #     Axes = Axes[0]
-    #     old_axes_name = ''
-        
-    #     try:
-    #         # Finds linear components
-    #         Linear = Axes.iter(namespace + "Linear")
-    #         for i in Linear:
-    #             Property = Element(namespace2 + "Property")
-    #             axes_name = i.attrib['name']
-    #             # Checks to see if there is another axes in the same orientation
-    #             if axes_name == old_axes_name:
-    #                 create_variable(root_in, root_out,
-    #                     "Axes"+ str(axes_label), 
-    #                     i.attrib['name'] + i.attrib['id'][-1], 
-    #                     namespace3 +  "DataItemType", 
-    #                     "Double")
-    #             else:
-    #                 create_variable(root_in, root_out,
-    #                     "Axes"+ str(axes_label), 
-    #                     i.attrib['name'], 
-    #                     namespace3 +  "DataItemType",
-    #                     "Double")
-    #             old_axes_name = axes_name
-
-    #     except:
-    #         pass
-    #     old_rotary_name = ''
-    #     try:
-    #         Rotary = Axes.iter(namespace + "Rotary")
-    #         for i in Rotary:
-    #             Property = Element(namespace2 + "Property")
-    #             rotary_name = i.attrib['name']
-    #             # Checks to see if there is another rotary in the same orientation
-    #             if rotary_name == old_rotary_name:
-    #                 new_name = i.attrib['name'] + i.attrib['id'][-1]
-    #                 create_variable(root_in,root_out,
-    #                     "Axes"+ str(axes_label),
-    #                     new_name, 
-    #                     namespace3 +  "DataItemType", 
-    #                     "Double")
-
-    #             else:
-    #                 create_variable(root_in,root_out,
-    #                     "Axes"+ str(axes_label),
-    #                     i.attrib['name'], 
-    #                     namespace3 +  "DataItemType", 
-    #                     "Double")
-    #             old_rotary_name = rotary_name
-    #     except:
-    #         pass
-    #     '''
-    #     axes_label = axes_label + 1000
-    # Defines a CNCToolType
-    # if ("Hurco" in device) and CNCToolCount < 1:
-    #     deviceType = "CNCTool"
-    #     ObjectType = Element(namespace2 + "ObjectType")
-    #     ObjectType = set_SymbolicName_and_BaseType(ObjectType, deviceType + "sType", namespace3 + 'FolderType')
-    #     Children = Element(namespace2 + "Children")
-    #
-    #     # Makes the variables
-    #     Variable = Element(namespace2 + "Variable")
-    #     set_MTConnect_Version(root_in, root_out, Variable)
-    #     Children.append(Variable)
-    #
-    #     Variable = Element(namespace2 + "Variable")
-    #     set_OPCUAMappingData(root_in, root_out, Variable)
-    #     Children.append(Variable)
-    #
-    #     Variable = Element(namespace2 + "Variable")
-    #     set_OPCUAVersion(root_in, root_out, Variable)
-    #     Children.append(Variable)
-    #
-    #     ObjectType.append(Children)
-    #     root_out.append(ObjectType)
-    #
-    #     ### Creates ObjectType   :    Lines 69-80 in MTConnectModel.xml
-    #
-    #     deviceType = "CNCTool"
-    #     ObjectType = Element(namespace2 + "ObjectType")
-    #     ObjectType = set_SymbolicName_and_BaseType(ObjectType, deviceType + "Type", namespace3 + 'BaseObjectType')
-    #     Children = Element(namespace2 + "Children")
-    #
-    #     # Makes the variables
-    #     Variable = Element(namespace2 + "Variable")
-    #     set_Availability(root_in, root_out, Variable)
-    #     Children.append(Variable)
-    #
-    #     # Makes the variables
-    #     Property = Element(namespace2 + "Property")
-    #     set_Manufacturer(root_in, root_out, Property)
-    #     Children.append(Property)
-    #
-    #     # Makes the variables
-    #     Property = Element(namespace2 + "Property")
-    #     set_SerialNumber(root_in, root_out, Property, device)
-    #     Children.append(Property)
-    #
-    #     # Finds and sets the Configuration
-    #     # This is temporarily Empyty
-    #
-    #     # Makes the variables
-    #     Property = Element(namespace2 + "Property")
-    #     set_SampleInterval(root_in, root_out, Property, device)
-    #     Children.append(Property)
-    #
-    #     # Makes the variables
-    #     Object = Element(namespace2 + "Object")
-    #     set_SymbolicName_TypeDefinition_and_ModellingRule(Object, "DataItems", namespace3 + "FolderType",
-    #                                                        "Mandatory")
-    #     Children.append(Object)
-    #
-    #     # Makes the variables
-    #     Object = Element(namespace2 + "Object")
-    #     set_SymbolicName_TypeDefinition_and_ModellingRule(Object, "Components", namespace3 + "FolderType",
-    #                                                        "Mandatory")
-    #     Children.append(Object)
-    #
-    #     # Makes the variables
-    #     Object = Element(namespace2 + "Object")
-    #     set_SymbolicName_TypeDefinition_and_ModellingRule(Object, "Conditions", namespace3 + "FolderType",
-    #                                                        "Optional")
-    #     Children.append(Object)
-    #
-    #     # Makes the axes object
-    #     Object = Element(namespace2 + "Object")
-    #     set_SymbolicName_TypeDefinition_and_ModellingRule(Object, "Axes", deviceType + "AxesType", "Mandatory")
-    #     Children.append(Object)
-    #
-    #     ObjectType.append(Children)
-    #     root_out.append(ObjectType)
-    #
-    #     ### Creates ObjectType   :    Lines 82-87 in MTConnectModel.xml
-    #     # Finds different components
-    #     Devices = root_in.iter(namespace + 'Device')
-    #     component_list = []
-    #     device_elments_list = []
-    #     for device_elments in Devices:
-    #         if device_elments.attrib['name'] == device:
-    #             break
-    #     Components = device_elments.findall(namespace + "Components")
-    #     Components = Components[0]
-    #
-    #     ObjectType = Element(namespace2 + "ObjectType")
-    #     set_SymbolicName_and_BaseType(ObjectType, deviceType+"ComponentType", namespace3 + 'BaseObjectType')
-    #     Children = Element(namespace2 + "Children")
-    #     # Makes Model element
-    #     Property = Element(namespace2 + "Property")
-    #     # set_Model(root_in, root_out, Property, device)
-    #     set_SymbolicName_DataType_and_ModellingRule(Property, "Model", namespace3 + "String", "Optional")
-    #     Children.append(Property)
-    #     # Makes Station element
-    #     Property = Element(namespace2 + "Property")
-    #     set_SymbolicName_DataType_and_ModellingRule(Property, "Station", namespace3 + "Duration", "Optional")
-    #     Children.append(Property)
-    #
-    #     ObjectType.append(Children)
-    #     root_out.append(ObjectType)
-    #
-    #     ### Creates ObjectType   :    Lines 89-98 in MTConnectModel.xml
-    #     ObjectType = Element(namespace2 + "ObjectType")
-    #     set_SymbolicName_and_BaseType(ObjectType, deviceType+"AxesType", namespace3 + 'BaseObjectType')
-    #     Children = Element(namespace2 + "Children")
-    #     # Finds component first
-    #     Devices = root_in.iter(namespace + 'Device')
-    #     # Finds device elment
-    #
-    #     component_list = []
-    #     device_elments_list = []
-    #     for device_elments in Devices:
-    #         if device_elments.attrib['name'] == device:
-    #             break
-    #     Components = device_elments.findall(namespace + 'Components')
-    #     Components = Components[0]
-    #     for j in Components:
-    #         component = j.attrib['name']
-    #         component_list.append(component)
-    #
-    #     Axes = Components.findall(namespace + "Axes")
-    #     Axes = Axes[0]
-    #     old_axes_name = ''
-    #     try:
-    #         Linear = Axes.iter(namespace + "Linear")
-    #         for i in Linear:
-    #             Variable = Element(namespace2 + "Variable")
-    #             axes_name = i.attrib['name']
-    #             # Checks to see if there is another axes in the same orientation
-    #             if axes_name == old_axes_name:
-    #                 set_SymbolicName_DataType_and_ModellingRule(Variable, i.attrib['name'] + i.attrib['id'][-1],
-    #                                                              namespace3+"String", "Mandatory")
-    #             else:
-    #                 set_SymbolicName_DataType_and_ModellingRule(Variable, i.attrib['name'], namespace3 + "String",
-    #                                                              "Mandatory")
-    #             old_axes_name = axes_name
-    #             Children.append(Variable)
-    #
-    #         if Linear == "NO Position FOUND":
-    #             print("NO Position FOUND")
-    #         elif Linear == []:
-    #             print("NO Position FOUND. EMPTY LIST.")
-    #     except:
-    #         pass
-    #
-    #     old_rotary_name = ''
-    #     try:
-    #         Rotary = Axes.iter(namespace + "Rotary")
-    #         for i in Rotary:
-    #             Variable = Element(namespace2 + "Variable")
-    #             rotary_name = i.attrib['name']
-    #             # Checks to see if there is another rotary in the same orientation
-    #             if rotary_name == old_rotary_name:
-    #                 new_name = i.attrib['name'] + i.attrib['id'][-1]
-    #                 set_SymbolicName_DataType_and_ModellingRule(Variable, new_name, namespace3 + "String", "Mandatory")
-    #             else:
-    #                 set_SymbolicName_DataType_and_ModellingRule(Variable, i.attrib['name'], namespace3 + "String",
-    #                                                              "Mandatory")
-    #             old_rotary_name = rotary_name
-    #             Children.append(Variable)
-    #
-    #         if Rotary == "NO Position FOUND":
-    #             print("NO RotaryPosition FOUND")
-    #         elif Rotary == []:
-    #             print("NO RotaryPosition FOUND. EMPTY LIST.")
-    #
-    #     except:
-    #         Position = "NO Rotary Position FOUND"
-    #
-    #     ObjectType.append(Children)
-    #     root_out.append(ObjectType)
-    #     CNCToolCount += 1
 
 #### Set Location of the MTConnectModel ---------------------------------------------------------
 ''' Currently it is the same folder as the nodeset generator. If it is not, specify the path. '''
@@ -1282,6 +709,7 @@ save_file_xml(root_out, output_file)
 filename = "MTConnectModel.xml"
 output_file = filepath + filename
 save_file_xml(root_out, output_file)
+
 
 ### Executes Batch File
 execute_batch()
