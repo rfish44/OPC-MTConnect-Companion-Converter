@@ -32,7 +32,7 @@ def move_files():
     # Overwrites files already there to update nodes
     # Set the file source and destination:
     # The source should be "...\UA-ModelCompiler-master\Published\MTConnect"
-    # The destination should be "...\UA-.NETStandard-master\SampleApplications\Workshop\Boiler\Server"
+    # The destination should be: root_dst_dir = r"...\UA-.NETStandard-master\SampleApplications\Workshop\Boiler\Server"
     root_src_dir = os.getcwd()  # Source
     root_dst_dir = os.getcwd()  # Destination
     try:
@@ -51,7 +51,7 @@ def move_files():
         print("An error occured while copying")
 
 def execute_batch():
-    # The batch file to converts the XML to .uanodes
+     # The batch file to converts the XML to .uanodes
     # Set the file path to ".../UA-ModelCompiler-master/"
     filepath = root_dst_dir
     p = subprocess.Popen("BuildStandardTypes.bat", cwd=filepath)
@@ -194,6 +194,7 @@ def create_objectType(object, root_out):
         <summary>
     '''
     object_name = object.tag.replace(namespace, '')
+    print("object_name before is this: ", object_name)
     object_name = object_name_filter(object_name, object)
 
     print("object_name is this: ", object_name)
@@ -229,7 +230,7 @@ def object_name_filter(object_name, object):
         <summary>
     '''
     if "Device" in object_name:
-        object_name = object.attrib['id']
+        object_name = object.attrib['name']
         object_name = object_name.replace("-","_")
         object_name = object_name.replace("#", "num")
     elif "Components" in object_name:
@@ -287,11 +288,18 @@ def make_children_objects(child, Children):
         Children = get_data_items(child, Children)
     elif child.tag == namespace + "Description":
         objectText = child.text
-        objectText = objectText.replace(" ", "_")
-        objectText = objectText.replace("-", "_")
-        objectText = objectText.replace("#", "num")
-        SymbolicName = "Description_" + objectText
-        create_variable(root_in, root_out, Children, SymbolicName, "String")
+        if objectText != None:
+            if " " in objectText:
+                objectText = objectText.replace(" ", "_")
+            if "-" in objectText:
+                objectText = objectText.replace("-", "_")
+            if "#" in objectText:
+                objectText = objectText.replace("#", "num")
+            SymbolicName = "Description_" + objectText
+            create_variable(root_in, root_out, Children, SymbolicName, "String")
+        else:
+            SymbolicName = "Description"
+            create_variable(root_in, root_out, Children, SymbolicName, "String")
     else:
         Children = create_object(root_in,root_out, Children, object_name, object_name + "Type")
 
@@ -530,14 +538,13 @@ def set_Model(root_in, root_out, Property, device):
         set_SymbolicName_DataType_and_ModellingRule(Property,"Model",namespace3 + "String","Optional")
 
 
-
 ######################################################################################################################
 
 ### SETUP ### ### SETUP ### ### SETUP ### ### SETUP ### ### SETUP ### ### SETUP ###
 
 ### Defines URLs
-# url = 'http://simulator.memexoee.com/'
-url = 'http://agent.mtconnect.org/probe'
+url = 'http://simulator.memexoee.com/'
+# url = 'http://agent.mtconnect.org/probe'
 
 # # Gets data from websites
 # Uncomment this section to probe a website
@@ -618,6 +625,7 @@ axes_label = 1001
 
 ### Searches devices and creates XML models for each in companion specification format
 runThrough = 0
+print("ALL DEVICE IS: ", all_devices)
 for device in all_devices: # Creates node sets for each device
     ### Checks for tools
     # Creates an Object for each Device
@@ -707,6 +715,10 @@ output_file = filepath + filename
 save_file_xml(root_out, output_file)
 
 filename = "MTConnectModel.xml"
+output_file = filepath + filename
+save_file_xml(root_out, output_file)
+
+filename = "MTConnectDeviceCompanion_NodeSet.xml"
 output_file = filepath + filename
 save_file_xml(root_out, output_file)
 
